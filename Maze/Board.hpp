@@ -3,20 +3,26 @@
  ** Date: 22 Nov 2017
  ** Description:
  
- 
+
  *********************************************************************/
 
-#include <iostream>
-#include "Game.hpp"
+#ifndef Board_hpp
+#define Board_hpp
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
+#include <iostream>
+
+const int NUM_ROWS = 30;
+const int NUM_COLS = 80;
+
+class Board
+{
+private:
+
+    char array[NUM_ROWS][NUM_COLS];
     
-    
-    
-    Game newGame;
-    newGame.makeMove();
-    
-    
-    return 0;
-}
+public:
+    Board();
+    void print();
+};
+
+#endif /* Board_hpp */
