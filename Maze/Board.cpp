@@ -14,13 +14,8 @@ using std::endl;
 Board::Board(){
     for(int row = 0; row < NUM_ROWS; row++){
         for(int column = 0; column < NUM_COLS; column++){
-            array[row][column] = ' ';
-            
-            array[0][column] = '=';
-            array[NUM_ROWS-1][column] = '=';
+            array[row][column] = 'X';
         }
-        array[row][0] = '|';
-        array[row][NUM_COLS-1] = '|';
     }
 }
 

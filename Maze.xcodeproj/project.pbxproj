@@ -10,6 +10,7 @@
 		83EAB67D1FC63B9D00F00B94 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83EAB67C1FC63B9D00F00B94 /* main.cpp */; };
 		83EAB6AD1FC6597600F00B94 /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83EAB6AB1FC6597600F00B94 /* Board.cpp */; };
 		83EAB6B01FC663ED00F00B94 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83EAB6AE1FC663ED00F00B94 /* Game.cpp */; };
+		83EAB6C61FCF53D700F00B94 /* Space.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83EAB6C41FCF53D700F00B94 /* Space.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,8 @@
 		83EAB6AC1FC6597600F00B94 /* Board.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Board.hpp; sourceTree = "<group>"; };
 		83EAB6AE1FC663ED00F00B94 /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		83EAB6AF1FC663ED00F00B94 /* Game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
+		83EAB6C41FCF53D700F00B94 /* Space.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Space.cpp; sourceTree = "<group>"; };
+		83EAB6C51FCF53D700F00B94 /* Space.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Space.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +66,8 @@
 		83EAB67B1FC63B9D00F00B94 /* Maze */ = {
 			isa = PBXGroup;
 			children = (
+				83EAB6C41FCF53D700F00B94 /* Space.cpp */,
+				83EAB6C51FCF53D700F00B94 /* Space.hpp */,
 				83EAB6AC1FC6597600F00B94 /* Board.hpp */,
 				83EAB6AB1FC6597600F00B94 /* Board.cpp */,
 				83EAB6AF1FC663ED00F00B94 /* Game.hpp */,
@@ -131,6 +136,7 @@
 			files = (
 				83EAB6B01FC663ED00F00B94 /* Game.cpp in Sources */,
 				83EAB6AD1FC6597600F00B94 /* Board.cpp in Sources */,
+				83EAB6C61FCF53D700F00B94 /* Space.cpp in Sources */,
 				83EAB67D1FC63B9D00F00B94 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

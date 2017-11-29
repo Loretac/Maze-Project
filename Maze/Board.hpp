@@ -10,9 +10,10 @@
 #define Board_hpp
 
 #include <iostream>
+#include "Space.hpp"
 
-const int NUM_ROWS = 30;
-const int NUM_COLS = 80;
+const int NUM_ROWS = 3;
+const int NUM_COLS = 3;
 
 class Board
 {
