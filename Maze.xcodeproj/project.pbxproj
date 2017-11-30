@@ -11,6 +11,11 @@
 		83EAB6AD1FC6597600F00B94 /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83EAB6AB1FC6597600F00B94 /* Board.cpp */; };
 		83EAB6B01FC663ED00F00B94 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83EAB6AE1FC663ED00F00B94 /* Game.cpp */; };
 		83EAB6C61FCF53D700F00B94 /* Space.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83EAB6C41FCF53D700F00B94 /* Space.cpp */; };
+		83EAB6C91FCF5B8400F00B94 /* Monster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83EAB6C71FCF5B8400F00B94 /* Monster.cpp */; };
+		83EAB6CC1FCF5B9E00F00B94 /* Pizza.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83EAB6CA1FCF5B9E00F00B94 /* Pizza.cpp */; };
+		83EAB6CF1FCF5BB100F00B94 /* Delivery.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83EAB6CD1FCF5BB100F00B94 /* Delivery.cpp */; };
+		83EAB6D21FCF5BCB00F00B94 /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83EAB6D01FCF5BCB00F00B94 /* Random.cpp */; };
+		83EAB6D51FCF5BD500F00B94 /* Free.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83EAB6D31FCF5BD500F00B94 /* Free.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +39,16 @@
 		83EAB6AF1FC663ED00F00B94 /* Game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 		83EAB6C41FCF53D700F00B94 /* Space.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Space.cpp; sourceTree = "<group>"; };
 		83EAB6C51FCF53D700F00B94 /* Space.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Space.hpp; sourceTree = "<group>"; };
+		83EAB6C71FCF5B8400F00B94 /* Monster.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Monster.cpp; sourceTree = "<group>"; };
+		83EAB6C81FCF5B8400F00B94 /* Monster.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Monster.hpp; sourceTree = "<group>"; };
+		83EAB6CA1FCF5B9E00F00B94 /* Pizza.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Pizza.cpp; sourceTree = "<group>"; };
+		83EAB6CB1FCF5B9E00F00B94 /* Pizza.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Pizza.hpp; sourceTree = "<group>"; };
+		83EAB6CD1FCF5BB100F00B94 /* Delivery.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Delivery.cpp; sourceTree = "<group>"; };
+		83EAB6CE1FCF5BB100F00B94 /* Delivery.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Delivery.hpp; sourceTree = "<group>"; };
+		83EAB6D01FCF5BCB00F00B94 /* Random.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Random.cpp; sourceTree = "<group>"; };
+		83EAB6D11FCF5BCB00F00B94 /* Random.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Random.hpp; sourceTree = "<group>"; };
+		83EAB6D31FCF5BD500F00B94 /* Free.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Free.cpp; sourceTree = "<group>"; };
+		83EAB6D41FCF5BD500F00B94 /* Free.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Free.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,8 +81,18 @@
 		83EAB67B1FC63B9D00F00B94 /* Maze */ = {
 			isa = PBXGroup;
 			children = (
-				83EAB6C41FCF53D700F00B94 /* Space.cpp */,
 				83EAB6C51FCF53D700F00B94 /* Space.hpp */,
+				83EAB6C41FCF53D700F00B94 /* Space.cpp */,
+				83EAB6C81FCF5B8400F00B94 /* Monster.hpp */,
+				83EAB6C71FCF5B8400F00B94 /* Monster.cpp */,
+				83EAB6CB1FCF5B9E00F00B94 /* Pizza.hpp */,
+				83EAB6CA1FCF5B9E00F00B94 /* Pizza.cpp */,
+				83EAB6CE1FCF5BB100F00B94 /* Delivery.hpp */,
+				83EAB6CD1FCF5BB100F00B94 /* Delivery.cpp */,
+				83EAB6D11FCF5BCB00F00B94 /* Random.hpp */,
+				83EAB6D01FCF5BCB00F00B94 /* Random.cpp */,
+				83EAB6D41FCF5BD500F00B94 /* Free.hpp */,
+				83EAB6D31FCF5BD500F00B94 /* Free.cpp */,
 				83EAB6AC1FC6597600F00B94 /* Board.hpp */,
 				83EAB6AB1FC6597600F00B94 /* Board.cpp */,
 				83EAB6AF1FC663ED00F00B94 /* Game.hpp */,
@@ -134,10 +159,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83EAB6D51FCF5BD500F00B94 /* Free.cpp in Sources */,
+				83EAB6CC1FCF5B9E00F00B94 /* Pizza.cpp in Sources */,
 				83EAB6B01FC663ED00F00B94 /* Game.cpp in Sources */,
 				83EAB6AD1FC6597600F00B94 /* Board.cpp in Sources */,
+				83EAB6C91FCF5B8400F00B94 /* Monster.cpp in Sources */,
+				83EAB6D21FCF5BCB00F00B94 /* Random.cpp in Sources */,
 				83EAB6C61FCF53D700F00B94 /* Space.cpp in Sources */,
 				83EAB67D1FC63B9D00F00B94 /* main.cpp in Sources */,
+				83EAB6CF1FCF5BB100F00B94 /* Delivery.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

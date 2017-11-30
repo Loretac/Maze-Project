@@ -15,7 +15,7 @@ int main(int argc, const char * argv[]) {
     
     
     Game newGame;
-    newGame.makeMove();
+    newGame.play();
     
     
     return 0;

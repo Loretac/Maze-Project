@@ -7,3 +7,19 @@
 //
 
 #include "Space.hpp"
+
+void Space::setPosition(int i){
+    position = i;
+}
+
+int Space::getPosition(){
+    return position;
+}
+
+void Space::setIdentity(char id){
+    identity = id;
+}
+
+char Space::getIdentity(){
+    return identity;
+}

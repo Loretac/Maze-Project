@@ -19,6 +19,7 @@ private:
     
 public:
     // Game();
+    void play();
     void makeMove();
 };
 
