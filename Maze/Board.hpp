@@ -21,11 +21,14 @@ private:
     // char array[NUM_ROWS][NUM_COLS];
     Space array[9];
     int randA, randB, randC, randD, randE, randF, randG, randH, randI;
+    Space *currentSpace;
     
 public:
     Board();
     void print();
     void randomize();
+    Space* getCurrent();
+    void setCurrent(Space*);
 };
 
 #endif /* Board_hpp */

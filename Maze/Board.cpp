@@ -18,6 +18,7 @@ Board::Board(){
     Random r1, r2, r3;
     Free free1;
 
+    // Randomize the 9 Board member variables to 0-8
     randomize();
     
     // Assign each space randomly
@@ -34,47 +35,116 @@ Board::Board(){
     
     
 
-    
+    // Set the position member variable for each space to its current value
     for(int i = 0; i < 9; i++){
         array[i].setPosition(i);
+        array[i].setUnoccupied();
     }
-
     
-    /*
-     for(int row = 0; row < NUM_ROWS; row++){
-        for(int column = 0; column < NUM_COLS; column++){
-            array[row][column] = 'X';
-        }
-    }
-     */
+    // initialize the starting space to occupied
+    array[randI].setOccupied();
     
+    // Set each of the space pointers
+    array[0].setTopNull();
+    array[0].setLeftNull();
+    array[0].setRight(&array[1]);
+    array[0].setBottom(&array[3]);
+    
+    array[1].setTopNull();
+    array[1].setLeft(&array[0]);
+    array[1].setRight(&array[2]);
+    array[1].setBottom(&array[4]);
+    
+    array[2].setTopNull();
+    array[2].setLeft(&array[1]);
+    array[2].setRightNull();
+    array[2].setBottom(&array[5]);
+    
+    array[3].setTop(&array[0]);
+    array[3].setLeftNull();
+    array[3].setRight(&array[4]);
+    array[3].setBottom(&array[6]);
+    
+    array[4].setTop(&array[1]);
+    array[4].setLeft(&array[3]);
+    array[4].setRight(&array[5]);
+    array[4].setBottom(&array[7]);
+    
+    array[5].setTop(&array[2]);
+    array[5].setLeft(&array[4]);
+    array[5].setRightNull();
+    array[5].setBottom(&array[8]);
+    
+    array[6].setTop(&array[3]);
+    array[6].setLeftNull();
+    array[6].setRight(&array[7]);
+    array[6].setBottomNull();
+    
+    array[7].setTop(&array[4]);
+    array[7].setLeft(&array[6]);
+    array[7].setRight(&array[8]);
+    array[7].setBottomNull();
+    
+    array[8].setTop(&array[5]);
+    array[8].setLeft(&array[7]);
+    array[8].setRightNull();
+    array[8].setBottomNull();
+    
+    currentSpace = &array[randI];
 }
 
+// Prints the board in its current state
 void Board::print(){
     
-    /*
-    for(int row = 0; row < NUM_ROWS; row++){
-        for(int column = 0; column < NUM_COLS; column++){
-            cout << array[row][column];
-        }
-        cout << endl;
-    }
     
-    */
     
     for(int i = 0; i < 3; i++){
-        std::cout << array[i].getIdentity() << " ";
+        if(array[i].getOccupied() == true){
+            std::cout << "O" << " ";
+        }
+        else{
+            std::cout << array[i].getIdentity() << " ";
+        }
     }
     std::cout << std::endl;
     for(int i = 3; i < 6; i++){
-        std::cout << array[i].getIdentity() << " ";
+        if(array[i].getOccupied() == true){
+            std::cout << "O" << " ";
+        }
+        else{
+            std::cout << array[i].getIdentity() << " ";
+        }
     }
     std::cout << std::endl;
     for(int i = 6; i < 9; i++){
-        std::cout << array[i].getIdentity() << " ";
+        if(array[i].getOccupied() == true){
+            std::cout << "O" << " ";
+        }
+        else{
+            std::cout << array[i].getIdentity() << " ";
+        }
     }
     std::cout << std::endl << std::endl;
     
+    
+    
+    
+    for(int i = 0; i < 3; i++){
+        
+        std::cout << array[i].getOccupied() << " ";
+    }
+    std::cout << std::endl;
+    for(int i = 3; i < 6; i++){
+        std::cout << array[i].getOccupied() << " ";
+    }
+    std::cout << std::endl;
+    for(int i = 6; i < 9; i++){
+        std::cout << array[i].getOccupied() << " ";
+    }
+    std::cout << std::endl << std::endl;
+    
+    /*
+    
     for(int i = 0; i < 3; i++){
         std::cout << array[i].getPosition() << " ";
     }
@@ -87,13 +157,27 @@ void Board::print(){
         std::cout << array[i].getPosition() << " ";
     }
     std::cout << std::endl;
+    */
     
     
+   /* std::cout << std::endl << std::endl << randA << " " << randB << " " << randC << " " << randD << " " << randE << " " << randF << " " << randG << " " << randH << " " << randI << std::endl;
     
-    std::cout << std::endl << std::endl << randA << " " << randB << " " << randC << " " << randD << " " << randE << " " << randF << " " << randG << " " << randH << " " << randI << std::endl;
+    */
 }
 
-// This function assigns the numbers 0-8 randomly to each "randX" member variable.
+
+Space* Board::getCurrent(){
+    return currentSpace;
+}
+
+void Board::setCurrent(Space* current){
+    currentSpace = current;
+}
+
+
+/*********************************************************************
+This function assigns the numbers 0-8 randomly to each "randX" member variable.
+ ********************************************************************/
 void Board::randomize(){
     srand (time(NULL)); // seeds for random integers
     

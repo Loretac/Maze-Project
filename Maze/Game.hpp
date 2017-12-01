@@ -21,6 +21,12 @@ public:
     // Game();
     void play();
     void makeMove();
+
+    void moveUp();
+    void moveDown();
+    void moveLeft();
+    void moveRight();
+    
 };
 
 #endif /* Game_hpp */

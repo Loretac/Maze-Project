@@ -12,23 +12,42 @@
 #include <iostream>
 
 class Space{
-protected:
+private:
     int position; // Where this space is
     char identity; // sample variable for testing
     Space *top;
     Space *right;
     Space *left;
     Space *bottom;
+    bool isOccupied;
+    
+    // Spaces which have been interacted with already (monsters killed) are switched to inactive
+    bool isActive;
     
 public:
     void setPosition(int);
     void setIdentity(char); // sample function for testing
     int getPosition();
+    
     Space* getTop();
     Space* getRight();
     Space* getLeft();
     Space* getBottom();
+    void setTop(Space*);
+    void setRight(Space*);
+    void setLeft(Space*);
+    void setBottom(Space*);
+    void setTopNull();
+    void setRightNull();
+    void setLeftNull();
+    void setBottomNull();
     char getIdentity();
+    void setOccupied();
+    void setUnoccupied();
+    bool getActive();
+    void setActive(bool);
+    bool getOccupied();
+    // virtual bool precondition() = 0; // Before user chooses to move to a specific space
 };
 
 #endif /* Space_hpp */
