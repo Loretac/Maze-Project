@@ -39,6 +39,7 @@ Board::Board(){
     for(int i = 0; i < 9; i++){
         array[i].setPosition(i);
         array[i].setUnoccupied();
+        array[i].setActive(true);
     }
     
     // initialize the starting space to occupied
@@ -102,6 +103,9 @@ void Board::print(){
         if(array[i].getOccupied() == true){
             std::cout << "O" << " ";
         }
+        else if(array[i].getActive() == false){
+            std::cout << " " << " ";
+        }
         else{
             std::cout << array[i].getIdentity() << " ";
         }
@@ -110,6 +114,9 @@ void Board::print(){
     for(int i = 3; i < 6; i++){
         if(array[i].getOccupied() == true){
             std::cout << "O" << " ";
+        }
+        else if(array[i].getActive() == false){
+            std::cout << " " << " ";
         }
         else{
             std::cout << array[i].getIdentity() << " ";
@@ -120,6 +127,9 @@ void Board::print(){
         if(array[i].getOccupied() == true){
             std::cout << "O" << " ";
         }
+        else if(array[i].getActive() == false){
+            std::cout << " " << " ";
+        }
         else{
             std::cout << array[i].getIdentity() << " ";
         }
@@ -127,8 +137,9 @@ void Board::print(){
     std::cout << std::endl << std::endl;
     
     
-    
-    
+    /*********************************************************************
+     FOR TESTING PURPOSES
+     ********************************************************************/
     for(int i = 0; i < 3; i++){
         
         std::cout << array[i].getOccupied() << " ";

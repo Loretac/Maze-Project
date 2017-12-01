@@ -12,6 +12,14 @@ void Space::setPosition(int i){
     position = i;
 }
 
+bool Space::getActive(){
+    return isActive;
+}
+
+void Space::setActive(bool active){
+    isActive = active;
+}
+
 int Space::getPosition(){
     return position;
 }

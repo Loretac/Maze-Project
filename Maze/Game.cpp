@@ -53,8 +53,11 @@ void Game::moveUp(){
     else{
         myboard.getCurrent()->getTop()->setOccupied();
         myboard.getCurrent()->setUnoccupied();
+        myboard.getCurrent()->setActive(false);
         
         myboard.setCurrent(myboard.getCurrent()->getTop());
+        
+        
     }
 
 }
@@ -66,6 +69,7 @@ void Game::moveDown(){
     else{
         myboard.getCurrent()->getBottom()->setOccupied();
         myboard.getCurrent()->setUnoccupied();
+        myboard.getCurrent()->setActive(false);
         
         myboard.setCurrent(myboard.getCurrent()->getBottom());
     }
@@ -78,6 +82,7 @@ void Game::moveLeft(){
     else{
         myboard.getCurrent()->getLeft()->setOccupied();
         myboard.getCurrent()->setUnoccupied();
+        myboard.getCurrent()->setActive(false);
         
         myboard.setCurrent(myboard.getCurrent()->getLeft());
     }
@@ -90,6 +95,7 @@ void Game::moveRight(){
     else{
         myboard.getCurrent()->getRight()->setOccupied();
         myboard.getCurrent()->setUnoccupied();
+        myboard.getCurrent()->setActive(false);
         
         myboard.setCurrent(myboard.getCurrent()->getRight());
     }
