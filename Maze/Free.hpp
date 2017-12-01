@@ -18,6 +18,7 @@ private:
     
 public:
     Free();
+    virtual bool precondition();
 };
 
 #endif /* Free_hpp */

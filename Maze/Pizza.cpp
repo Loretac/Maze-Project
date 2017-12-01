@@ -11,3 +11,7 @@
 Pizza::Pizza(){
     setIdentity('P');
 }
+
+bool Pizza::precondition(){
+    return true;
+}

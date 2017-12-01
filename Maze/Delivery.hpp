@@ -18,6 +18,7 @@ private:
     
 public:
     Delivery();
+    virtual bool precondition();
 };
 
 #endif /* Delivery_hpp */

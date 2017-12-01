@@ -12,11 +12,15 @@ using std::cout;
 using std::endl;
 
 Board::Board(){
-    Monster monster1, monster2, monster3;
-    Pizza pizza1;
-    Delivery deliv1;
-    Random r1, r2, r3;
-    Free free1;
+    Monster *monster1 = new Monster;
+    Monster *monster2 = new Monster;
+    Monster *monster3 = new Monster;
+    Pizza *pizza1 = new Pizza;
+    Delivery *deliv1 = new Delivery;
+    Random *r1 = new Random;
+    Random *r2 = new Random;
+    Random *r3 = new Random;
+    Free *free1 = new Free;
 
     // Randomize the 9 Board member variables to 0-8
     randomize();
@@ -37,61 +41,61 @@ Board::Board(){
 
     // Set the position member variable for each space to its current value
     for(int i = 0; i < 9; i++){
-        array[i].setPosition(i);
-        array[i].setUnoccupied();
-        array[i].setActive(true);
+        array[i]->setPosition(i);
+        array[i]->setUnoccupied();
+        array[i]->setActive(true);
     }
     
     // initialize the starting space to occupied
-    array[randI].setOccupied();
+    array[randI]->setOccupied();
     
     // Set each of the space pointers
-    array[0].setTopNull();
-    array[0].setLeftNull();
-    array[0].setRight(&array[1]);
-    array[0].setBottom(&array[3]);
+    array[0]->setTopNull();
+    array[0]->setLeftNull();
+    array[0]->setRight(array[1]);
+    array[0]->setBottom(array[3]);
     
-    array[1].setTopNull();
-    array[1].setLeft(&array[0]);
-    array[1].setRight(&array[2]);
-    array[1].setBottom(&array[4]);
+    array[1]->setTopNull();
+    array[1]->setLeft(array[0]);
+    array[1]->setRight(array[2]);
+    array[1]->setBottom(array[4]);
     
-    array[2].setTopNull();
-    array[2].setLeft(&array[1]);
-    array[2].setRightNull();
-    array[2].setBottom(&array[5]);
+    array[2]->setTopNull();
+    array[2]->setLeft(array[1]);
+    array[2]->setRightNull();
+    array[2]->setBottom(array[5]);
     
-    array[3].setTop(&array[0]);
-    array[3].setLeftNull();
-    array[3].setRight(&array[4]);
-    array[3].setBottom(&array[6]);
+    array[3]->setTop(array[0]);
+    array[3]->setLeftNull();
+    array[3]->setRight(array[4]);
+    array[3]->setBottom(array[6]);
     
-    array[4].setTop(&array[1]);
-    array[4].setLeft(&array[3]);
-    array[4].setRight(&array[5]);
-    array[4].setBottom(&array[7]);
+    array[4]->setTop(array[1]);
+    array[4]->setLeft(array[3]);
+    array[4]->setRight(array[5]);
+    array[4]->setBottom(array[7]);
     
-    array[5].setTop(&array[2]);
-    array[5].setLeft(&array[4]);
-    array[5].setRightNull();
-    array[5].setBottom(&array[8]);
+    array[5]->setTop(array[2]);
+    array[5]->setLeft(array[4]);
+    array[5]->setRightNull();
+    array[5]->setBottom(array[8]);
     
-    array[6].setTop(&array[3]);
-    array[6].setLeftNull();
-    array[6].setRight(&array[7]);
-    array[6].setBottomNull();
+    array[6]->setTop(array[3]);
+    array[6]->setLeftNull();
+    array[6]->setRight(array[7]);
+    array[6]->setBottomNull();
     
-    array[7].setTop(&array[4]);
-    array[7].setLeft(&array[6]);
-    array[7].setRight(&array[8]);
-    array[7].setBottomNull();
+    array[7]->setTop(array[4]);
+    array[7]->setLeft(array[6]);
+    array[7]->setRight(array[8]);
+    array[7]->setBottomNull();
     
-    array[8].setTop(&array[5]);
-    array[8].setLeft(&array[7]);
-    array[8].setRightNull();
-    array[8].setBottomNull();
+    array[8]->setTop(array[5]);
+    array[8]->setLeft(array[7]);
+    array[8]->setRightNull();
+    array[8]->setBottomNull();
     
-    currentSpace = &array[randI];
+    currentSpace = array[randI];
 }
 
 // Prints the board in its current state
@@ -100,38 +104,38 @@ void Board::print(){
     
     
     for(int i = 0; i < 3; i++){
-        if(array[i].getOccupied() == true){
+        if(array[i]->getOccupied() == true){
             std::cout << "O" << " ";
         }
-        else if(array[i].getActive() == false){
+        else if(array[i]->getActive() == false){
             std::cout << " " << " ";
         }
         else{
-            std::cout << array[i].getIdentity() << " ";
+            std::cout << array[i]->getIdentity() << " ";
         }
     }
     std::cout << std::endl;
     for(int i = 3; i < 6; i++){
-        if(array[i].getOccupied() == true){
+        if(array[i]->getOccupied() == true){
             std::cout << "O" << " ";
         }
-        else if(array[i].getActive() == false){
+        else if(array[i]->getActive() == false){
             std::cout << " " << " ";
         }
         else{
-            std::cout << array[i].getIdentity() << " ";
+            std::cout << array[i]->getIdentity() << " ";
         }
     }
     std::cout << std::endl;
     for(int i = 6; i < 9; i++){
-        if(array[i].getOccupied() == true){
+        if(array[i]->getOccupied() == true){
             std::cout << "O" << " ";
         }
-        else if(array[i].getActive() == false){
+        else if(array[i]->getActive() == false){
             std::cout << " " << " ";
         }
         else{
-            std::cout << array[i].getIdentity() << " ";
+            std::cout << array[i]->getIdentity() << " ";
         }
     }
     std::cout << std::endl << std::endl;
@@ -142,17 +146,37 @@ void Board::print(){
      ********************************************************************/
     for(int i = 0; i < 3; i++){
         
-        std::cout << array[i].getOccupied() << " ";
+        std::cout << array[i]->getOccupied() << " ";
     }
     std::cout << std::endl;
     for(int i = 3; i < 6; i++){
-        std::cout << array[i].getOccupied() << " ";
+        std::cout << array[i]->getOccupied() << " ";
     }
     std::cout << std::endl;
     for(int i = 6; i < 9; i++){
-        std::cout << array[i].getOccupied() << " ";
+        std::cout << array[i]->getOccupied() << " ";
     }
     std::cout << std::endl << std::endl;
+    
+    
+    
+    
+    
+    for(int i = 0; i < 3; i++){
+        
+        std::cout << array[i]->getActive() << " ";
+    }
+    std::cout << std::endl;
+    for(int i = 3; i < 6; i++){
+        std::cout << array[i]->getActive() << " ";
+    }
+    std::cout << std::endl;
+    for(int i = 6; i < 9; i++){
+        std::cout << array[i]->getActive() << " ";
+    }
+    std::cout << std::endl << std::endl;
+    
+    
     
     /*
     
@@ -225,4 +249,10 @@ void Board::randomize(){
     do{
         randI = rand() % 9;
     }while(randI == randA || randI == randB || randI == randC || randI == randD || randI == randE || randI == randF || randI == randG || randI == randH);
+}
+
+Board::~Board(){
+    for(int i = 0; i < 9; i++){
+        delete array[i];
+    }
 }

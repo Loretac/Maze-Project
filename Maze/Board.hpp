@@ -19,12 +19,13 @@ class Board
 {
 private:
     // char array[NUM_ROWS][NUM_COLS];
-    Space array[9];
+    Space* array[9];
     int randA, randB, randC, randD, randE, randF, randG, randH, randI;
     Space *currentSpace;
     
 public:
     Board();
+    ~Board();
     void print();
     void randomize();
     Space* getCurrent();

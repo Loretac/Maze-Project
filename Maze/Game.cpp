@@ -47,10 +47,10 @@ void Game::makeMove(){
 }
 
 void Game::moveUp(){
-    if(myboard.getCurrent()->getTop() == nullptr){
+    if(myboard.getCurrent()->getTop() == nullptr || myboard.getCurrent()->getTop() == NULL){
         std::cout << "You cannot move up." << std::endl;
     }
-    else{
+    else if(myboard.getCurrent()->getTop()->precondition() == true){
         myboard.getCurrent()->getTop()->setOccupied();
         myboard.getCurrent()->setUnoccupied();
         myboard.getCurrent()->setActive(false);
@@ -63,10 +63,10 @@ void Game::moveUp(){
 }
 
 void Game::moveDown(){
-    if(myboard.getCurrent()->getBottom() == nullptr){
+    if(myboard.getCurrent()->getBottom() == nullptr || myboard.getCurrent()->getBottom() == NULL){
         std::cout << "You cannot move down." << std::endl;
     }
-    else{
+    else if(myboard.getCurrent()->getBottom()->precondition() == true){
         myboard.getCurrent()->getBottom()->setOccupied();
         myboard.getCurrent()->setUnoccupied();
         myboard.getCurrent()->setActive(false);
@@ -76,10 +76,10 @@ void Game::moveDown(){
 }
 
 void Game::moveLeft(){
-    if(myboard.getCurrent()->getLeft() == nullptr){
+    if(myboard.getCurrent()->getLeft() == nullptr || myboard.getCurrent()->getLeft() == NULL){
         std::cout << "You cannot move left." << std::endl;
     }
-    else{
+    else if(myboard.getCurrent()->getLeft()->precondition() == true){
         myboard.getCurrent()->getLeft()->setOccupied();
         myboard.getCurrent()->setUnoccupied();
         myboard.getCurrent()->setActive(false);
@@ -89,10 +89,10 @@ void Game::moveLeft(){
 }
 
 void Game::moveRight(){
-    if(myboard.getCurrent()->getRight() == nullptr){
+    if(myboard.getCurrent()->getRight() == nullptr || myboard.getCurrent()->getRight() == NULL){
         std::cout << "You cannot move right." << std::endl;
     }
-    else{
+    else if(myboard.getCurrent()->getRight()->precondition() == true){
         myboard.getCurrent()->getRight()->setOccupied();
         myboard.getCurrent()->setUnoccupied();
         myboard.getCurrent()->setActive(false);

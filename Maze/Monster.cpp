@@ -11,3 +11,7 @@
 Monster::Monster(){
     setIdentity('M');
 }
+
+bool Monster::precondition(){
+    return true;
+}

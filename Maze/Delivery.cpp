@@ -11,3 +11,8 @@
 Delivery::Delivery(){
     setIdentity('D');
 }
+
+bool Delivery::precondition(){
+    std::cout << "You probably shouldn't go to the house without having the pizza first." << std::endl;
+    return false;
+}

@@ -11,3 +11,7 @@
 Free::Free(){
     setIdentity('F');
 }
+
+bool Free::precondition(){
+    return true;
+}

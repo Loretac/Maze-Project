@@ -18,6 +18,7 @@ private:
     
 public:
     Random();
+    virtual bool precondition();
 };
 
 #endif /* Random_hpp */

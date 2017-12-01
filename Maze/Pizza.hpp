@@ -18,6 +18,7 @@ private:
     
 public:
     Pizza();
+    virtual bool precondition();
 };
 
 #endif /* Pizza_hpp */

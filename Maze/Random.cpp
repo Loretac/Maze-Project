@@ -11,3 +11,7 @@
 Random::Random(){
     setIdentity('R');
 }
+
+bool Random::precondition(){
+    return true;
+}

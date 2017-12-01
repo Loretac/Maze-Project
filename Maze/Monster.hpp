@@ -18,6 +18,7 @@ private:
     
 public:
     Monster();
+    virtual bool precondition();
 };
 
 #endif /* Monster_hpp */
