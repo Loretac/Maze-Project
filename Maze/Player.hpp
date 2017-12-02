@@ -24,8 +24,10 @@ public:
     Player();
     bool getPizza();
     void setPizza(bool);
-    int getHealth;
+    int getHealth();
     void setHealth(int);
+    int getGarlic();
+    void setGarlic(int);
     
 };
 

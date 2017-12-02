@@ -12,7 +12,7 @@ Monster::Monster(){
     setIdentity('M');
 }
 
-bool Monster::precondition(){
+bool Monster::precondition(int){
     return true;
 }
 

@@ -12,7 +12,7 @@ Random::Random(){
     setIdentity('R');
 }
 
-bool Random::precondition(){
+bool Random::precondition(int){
     return true;
 }
 

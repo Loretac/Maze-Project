@@ -12,7 +12,7 @@ Pizza::Pizza(){
     setIdentity('P');
 }
 
-bool Pizza::precondition(){
+bool Pizza::precondition(int){
     return true;
 }
 

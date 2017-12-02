@@ -17,6 +17,7 @@ class Game
 private:
     Board myboard;
     Player myplayer;
+    int status; // codes feed into space/s precondition function
     
 public:
     // Game();
@@ -27,6 +28,7 @@ public:
     void moveDown();
     void moveLeft();
     void moveRight();
+    void updateStatus();
     
 };
 

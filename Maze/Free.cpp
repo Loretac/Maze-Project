@@ -12,7 +12,7 @@ Free::Free(){
     setIdentity('F');
 }
 
-bool Free::precondition(){
+bool Free::precondition(int){
     return true;
 }
 

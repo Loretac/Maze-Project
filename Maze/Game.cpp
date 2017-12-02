@@ -12,6 +12,8 @@
 using std::string;
 
 void Game::play(){
+    status = 0; // initialize status to 0
+    
     for(int i = 0; i < 100; i++){
         makeMove();
     }
@@ -59,7 +61,7 @@ void Game::moveUp(){
     if(myboard.getCurrent()->getTop() == nullptr || myboard.getCurrent()->getTop() == NULL){
         std::cout << "You cannot move up." << std::endl;
     }
-    else if(myboard.getCurrent()->getTop()->precondition() == true){
+    else if(myboard.getCurrent()->getTop()->precondition(status) == true){
         myboard.getCurrent()->getTop()->setOccupied();
         myboard.getCurrent()->setUnoccupied();
         
@@ -72,6 +74,8 @@ void Game::moveUp(){
         myboard.setCurrent(myboard.getCurrent()->getTop());
         
         myboard.getCurrent()->setActive(false);
+        
+        updateStatus();
     }
 
 }
@@ -80,7 +84,7 @@ void Game::moveDown(){
     if(myboard.getCurrent()->getBottom() == nullptr || myboard.getCurrent()->getBottom() == NULL){
         std::cout << "You cannot move down." << std::endl;
     }
-    else if(myboard.getCurrent()->getBottom()->precondition() == true){
+    else if(myboard.getCurrent()->getBottom()->precondition(status) == true){
         myboard.getCurrent()->getBottom()->setOccupied();
         myboard.getCurrent()->setUnoccupied();
         
@@ -91,6 +95,8 @@ void Game::moveDown(){
         }
         myboard.setCurrent(myboard.getCurrent()->getBottom());
         myboard.getCurrent()->setActive(false);
+        
+        updateStatus();
     }
 }
 
@@ -98,7 +104,7 @@ void Game::moveLeft(){
     if(myboard.getCurrent()->getLeft() == nullptr || myboard.getCurrent()->getLeft() == NULL){
         std::cout << "You cannot move left." << std::endl;
     }
-    else if(myboard.getCurrent()->getLeft()->precondition() == true){
+    else if(myboard.getCurrent()->getLeft()->precondition(status) == true){
         myboard.getCurrent()->getLeft()->setOccupied();
         myboard.getCurrent()->setUnoccupied();
         
@@ -110,15 +116,18 @@ void Game::moveLeft(){
         myboard.setCurrent(myboard.getCurrent()->getLeft());
         myboard.getCurrent()->setActive(false);
         
-        
+        updateStatus();
     }
 }
 
 void Game::moveRight(){
+    
+    
+    
     if(myboard.getCurrent()->getRight() == nullptr || myboard.getCurrent()->getRight() == NULL){
         std::cout << "You cannot move right." << std::endl;
     }
-    else if(myboard.getCurrent()->getRight()->precondition() == true){
+    else if(myboard.getCurrent()->getRight()->precondition(status) == true){
         myboard.getCurrent()->getRight()->setOccupied();
         myboard.getCurrent()->setUnoccupied();
         
@@ -131,6 +140,22 @@ void Game::moveRight(){
         myboard.setCurrent(myboard.getCurrent()->getRight());
         myboard.getCurrent()->setActive(false);
         
+        updateStatus();
         
+    }
+}
+
+void Game::updateStatus(){
+    if(myplayer.getPizza() == false && myplayer.getGarlic() == false){
+        status = 0;
+    }
+    if(myplayer.getPizza() == true && myplayer.getGarlic() == false){
+        status = 1;
+    }
+    if(myplayer.getPizza() == true && myplayer.getGarlic() == true){
+        status = 2;
+    }
+    if(myplayer.getPizza() == false && myplayer.getGarlic() == true){
+        status = 3;
     }
 }

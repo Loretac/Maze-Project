@@ -47,7 +47,7 @@ public:
     bool getActive();
     void setActive(bool);
     bool getOccupied();
-    virtual bool precondition() = 0; // Before user chooses to move to a specific space
+    virtual bool precondition(int) = 0; // Before user chooses to move to a specific space
     virtual int postcondition() = 0;
 };
 

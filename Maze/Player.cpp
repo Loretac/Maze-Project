@@ -22,3 +22,11 @@ bool Player::getPizza(){
 void Player::setPizza(bool ifPizza){
     pizza = ifPizza;
 }
+
+int Player::getGarlic(){
+    return garlic;
+}
+
+void Player::setGarlic(int i){
+    garlic = i;
+}

@@ -18,7 +18,7 @@ private:
     
 public:
     Random();
-    virtual bool precondition();
+    virtual bool precondition(int);
     virtual int postcondition();
 };
 
