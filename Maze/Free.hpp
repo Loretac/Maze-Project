@@ -19,6 +19,7 @@ private:
 public:
     Free();
     virtual bool precondition();
+    virtual int postcondition();
 };
 
 #endif /* Free_hpp */

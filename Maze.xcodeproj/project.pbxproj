@@ -16,6 +16,7 @@
 		83EAB6CF1FCF5BB100F00B94 /* Delivery.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83EAB6CD1FCF5BB100F00B94 /* Delivery.cpp */; };
 		83EAB6D21FCF5BCB00F00B94 /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83EAB6D01FCF5BCB00F00B94 /* Random.cpp */; };
 		83EAB6D51FCF5BD500F00B94 /* Free.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83EAB6D31FCF5BD500F00B94 /* Free.cpp */; };
+		83EAB6DB1FD1280D00F00B94 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83EAB6D91FD1280D00F00B94 /* Player.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,6 +50,8 @@
 		83EAB6D11FCF5BCB00F00B94 /* Random.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Random.hpp; sourceTree = "<group>"; };
 		83EAB6D31FCF5BD500F00B94 /* Free.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Free.cpp; sourceTree = "<group>"; };
 		83EAB6D41FCF5BD500F00B94 /* Free.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Free.hpp; sourceTree = "<group>"; };
+		83EAB6D91FD1280D00F00B94 /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		83EAB6DA1FD1280D00F00B94 /* Player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Player.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +98,8 @@
 				83EAB6D31FCF5BD500F00B94 /* Free.cpp */,
 				83EAB6AC1FC6597600F00B94 /* Board.hpp */,
 				83EAB6AB1FC6597600F00B94 /* Board.cpp */,
+				83EAB6DA1FD1280D00F00B94 /* Player.hpp */,
+				83EAB6D91FD1280D00F00B94 /* Player.cpp */,
 				83EAB6AF1FC663ED00F00B94 /* Game.hpp */,
 				83EAB6AE1FC663ED00F00B94 /* Game.cpp */,
 				83EAB67C1FC63B9D00F00B94 /* main.cpp */,
@@ -163,6 +168,7 @@
 				83EAB6CC1FCF5B9E00F00B94 /* Pizza.cpp in Sources */,
 				83EAB6B01FC663ED00F00B94 /* Game.cpp in Sources */,
 				83EAB6AD1FC6597600F00B94 /* Board.cpp in Sources */,
+				83EAB6DB1FD1280D00F00B94 /* Player.cpp in Sources */,
 				83EAB6C91FCF5B8400F00B94 /* Monster.cpp in Sources */,
 				83EAB6D21FCF5BCB00F00B94 /* Random.cpp in Sources */,
 				83EAB6C61FCF53D700F00B94 /* Space.cpp in Sources */,

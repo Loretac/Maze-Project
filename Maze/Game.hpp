@@ -10,12 +10,13 @@
 #define Game_hpp
 
 #include <iostream>
-#include "Board.hpp"
+#include "Player.hpp"
 
 class Game
 {
 private:
     Board myboard;
+    Player myplayer;
     
 public:
     // Game();

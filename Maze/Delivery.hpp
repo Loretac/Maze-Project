@@ -19,6 +19,7 @@ private:
 public:
     Delivery();
     virtual bool precondition();
+    virtual int postcondition();
 };
 
 #endif /* Delivery_hpp */

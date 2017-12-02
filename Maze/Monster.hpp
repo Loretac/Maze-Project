@@ -19,6 +19,7 @@ private:
 public:
     Monster();
     virtual bool precondition();
+    virtual int postcondition();
 };
 
 #endif /* Monster_hpp */

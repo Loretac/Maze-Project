@@ -19,6 +19,7 @@ private:
 public:
     Random();
     virtual bool precondition();
+    virtual int postcondition();
 };
 
 #endif /* Random_hpp */

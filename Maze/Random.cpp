@@ -15,3 +15,8 @@ Random::Random(){
 bool Random::precondition(){
     return true;
 }
+
+int Random::postcondition(){
+    // placeholder
+    return 0;
+}

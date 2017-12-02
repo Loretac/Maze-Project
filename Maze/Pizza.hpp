@@ -19,6 +19,7 @@ private:
 public:
     Pizza();
     virtual bool precondition();
+    virtual int postcondition();
 };
 
 #endif /* Pizza_hpp */

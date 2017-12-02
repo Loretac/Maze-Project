@@ -15,3 +15,8 @@ Monster::Monster(){
 bool Monster::precondition(){
     return true;
 }
+
+int Monster::postcondition(){
+    // placeholder
+    return 0;
+}

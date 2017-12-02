@@ -46,8 +46,9 @@ Board::Board(){
         array[i]->setActive(true);
     }
     
-    // initialize the starting space to occupied
+    // initialize the starting space to occupied and inactive
     array[randI]->setOccupied();
+    array[randI]->setActive(false);
     
     // Set each of the space pointers
     array[0]->setTopNull();
@@ -144,6 +145,7 @@ void Board::print(){
     /*********************************************************************
      FOR TESTING PURPOSES
      ********************************************************************/
+    std::cout << "Occupied:" << std::endl;
     for(int i = 0; i < 3; i++){
         
         std::cout << array[i]->getOccupied() << " ";
@@ -161,7 +163,7 @@ void Board::print(){
     
     
     
-    
+    std::cout << "Active:" << std::endl;
     for(int i = 0; i < 3; i++){
         
         std::cout << array[i]->getActive() << " ";

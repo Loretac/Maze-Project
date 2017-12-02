@@ -15,3 +15,8 @@ Free::Free(){
 bool Free::precondition(){
     return true;
 }
+
+int Free::postcondition(){
+    // placeholder
+    return 0;
+}

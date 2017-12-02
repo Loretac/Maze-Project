@@ -15,3 +15,10 @@ Pizza::Pizza(){
 bool Pizza::precondition(){
     return true;
 }
+
+int Pizza::postcondition(){
+    if(getActive() == true){
+        std::cout << "You found the pizza!" << std::endl;
+    }
+    return 1;
+}

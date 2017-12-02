@@ -21,6 +21,15 @@ void Game::play(){
 void Game::makeMove(){
     string input;
     
+    std::cout << "Has pizza: ";
+    if(myplayer.getPizza() == true){
+        std::cout << "yes";
+    }
+    else{
+        std::cout << "no";
+    }
+    std::cout << std::endl;
+    
         myboard.print();
     std::cout << "Type something: " << std::endl;
         getline(std::cin, input);
@@ -53,11 +62,16 @@ void Game::moveUp(){
     else if(myboard.getCurrent()->getTop()->precondition() == true){
         myboard.getCurrent()->getTop()->setOccupied();
         myboard.getCurrent()->setUnoccupied();
-        myboard.getCurrent()->setActive(false);
+        
+        // run postcondition before setting new space to inactive
+        int postValue = myboard.getCurrent()->getTop()->postcondition();
+        if(postValue == 1){
+            myplayer.setPizza(true);
+        }
         
         myboard.setCurrent(myboard.getCurrent()->getTop());
         
-        
+        myboard.getCurrent()->setActive(false);
     }
 
 }
@@ -69,9 +83,14 @@ void Game::moveDown(){
     else if(myboard.getCurrent()->getBottom()->precondition() == true){
         myboard.getCurrent()->getBottom()->setOccupied();
         myboard.getCurrent()->setUnoccupied();
-        myboard.getCurrent()->setActive(false);
         
+        // run postcondition
+        int postValue = myboard.getCurrent()->getBottom()->postcondition();
+        if(postValue == 1){
+            myplayer.setPizza(true);
+        }
         myboard.setCurrent(myboard.getCurrent()->getBottom());
+        myboard.getCurrent()->setActive(false);
     }
 }
 
@@ -82,9 +101,16 @@ void Game::moveLeft(){
     else if(myboard.getCurrent()->getLeft()->precondition() == true){
         myboard.getCurrent()->getLeft()->setOccupied();
         myboard.getCurrent()->setUnoccupied();
+        
+        // run postcondition
+        int postValue = myboard.getCurrent()->getLeft()->postcondition();
+        if(postValue == 1){
+            myplayer.setPizza(true);
+        }
+        myboard.setCurrent(myboard.getCurrent()->getLeft());
         myboard.getCurrent()->setActive(false);
         
-        myboard.setCurrent(myboard.getCurrent()->getLeft());
+        
     }
 }
 
@@ -95,8 +121,16 @@ void Game::moveRight(){
     else if(myboard.getCurrent()->getRight()->precondition() == true){
         myboard.getCurrent()->getRight()->setOccupied();
         myboard.getCurrent()->setUnoccupied();
-        myboard.getCurrent()->setActive(false);
+        
+        // run postcondition
+        int postValue = myboard.getCurrent()->getRight()->postcondition();
+        if(postValue == 1){
+            myplayer.setPizza(true);
+        }
         
         myboard.setCurrent(myboard.getCurrent()->getRight());
+        myboard.getCurrent()->setActive(false);
+        
+        
     }
 }
