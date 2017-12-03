@@ -18,6 +18,7 @@ private:
     Board myboard;
     Player myplayer;
     int status; // codes feed into space/s precondition function
+    int numLevel;
     
 public:
     // Game();
@@ -29,6 +30,7 @@ public:
     void moveLeft();
     void moveRight();
     void updateStatus();
+    void playLevel();
     
 };
 

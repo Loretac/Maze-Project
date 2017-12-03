@@ -19,6 +19,7 @@ private:
     int spirit;
     int garlic;
     bool pizza;
+    bool delivery;
     
 public:
     Player();
@@ -28,6 +29,8 @@ public:
     void setHealth(int);
     int getGarlic();
     void setGarlic(int);
+    bool getDelivery();
+    void setDelivery(bool);
     
 };
 

@@ -12,7 +12,8 @@ Player::Player(){
     health = 100;
     spirit = 100;
     garlic = 0;
-    pizza = false;
+    pizza = false; // player does not start out with pizza
+    delivery = false; // delivery signifies the completion of the level
 }
 
 bool Player::getPizza(){
@@ -29,4 +30,20 @@ int Player::getGarlic(){
 
 void Player::setGarlic(int i){
     garlic = i;
+}
+
+int Player::getHealth(){
+    return health;
+}
+
+void Player::setHealth(int i){
+    health = i;
+}
+
+bool Player::getDelivery(){
+    return delivery;
+}
+
+void Player::setDelivery(bool i){
+    delivery = i;
 }

@@ -24,6 +24,6 @@ bool Delivery::precondition(int status){
 }
 
 int Delivery::postcondition(){
-    // placeholder
-    return 0;
+    std::cout << "You delivered the pizza!" << std::endl;
+    return 2;
 }

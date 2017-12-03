@@ -13,10 +13,38 @@ using std::string;
 
 void Game::play(){
     status = 0; // initialize status to 0
+    numLevel = 0;
     
-    for(int i = 0; i < 100; i++){
-        makeMove();
+    while(1){
+        numLevel++;
+        myplayer.setDelivery(false); // player does not start out with delivery
+        myplayer.setPizza(false); // player does not start out with pizza
+        updateStatus();
+        
+        playLevel(); // loop levels until player dies
+        if(myplayer.getHealth() == 0){
+            break;
+        }
     }
+}
+
+void Game::playLevel(){
+    // loop moves until player dies or level is complete
+    while(1){
+        std::cout << "Level " << numLevel << std::endl;
+        makeMove();
+        
+        if(myplayer.getHealth() == 0){
+            std::cout << "You died!" << std::endl;
+            break;
+        }
+        else if(myplayer.getDelivery() == true){
+            std::cout << "Moving on to next level..." << std::endl;
+            break;
+        }
+    }
+    
+    
     
 }
 
@@ -70,6 +98,9 @@ void Game::moveUp(){
         if(postValue == 1){
             myplayer.setPizza(true);
         }
+        if(postValue == 2){
+            myplayer.setDelivery(true);
+        }
         
         myboard.setCurrent(myboard.getCurrent()->getTop());
         
@@ -93,6 +124,9 @@ void Game::moveDown(){
         if(postValue == 1){
             myplayer.setPizza(true);
         }
+        if(postValue == 2){
+            myplayer.setDelivery(true);
+        }
         myboard.setCurrent(myboard.getCurrent()->getBottom());
         myboard.getCurrent()->setActive(false);
         
@@ -112,6 +146,9 @@ void Game::moveLeft(){
         int postValue = myboard.getCurrent()->getLeft()->postcondition();
         if(postValue == 1){
             myplayer.setPizza(true);
+        }
+        if(postValue == 2){
+            myplayer.setDelivery(true);
         }
         myboard.setCurrent(myboard.getCurrent()->getLeft());
         myboard.getCurrent()->setActive(false);
@@ -135,6 +172,9 @@ void Game::moveRight(){
         int postValue = myboard.getCurrent()->getRight()->postcondition();
         if(postValue == 1){
             myplayer.setPizza(true);
+        }
+        if(postValue == 2){
+            myplayer.setDelivery(true);
         }
         
         myboard.setCurrent(myboard.getCurrent()->getRight());
