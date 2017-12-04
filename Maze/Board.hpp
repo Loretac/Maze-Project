@@ -30,6 +30,8 @@ public:
     void randomize();
     Space* getCurrent();
     void setCurrent(Space*);
+    void setPointers();
+    
 };
 
 #endif /* Board_hpp */

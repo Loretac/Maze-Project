@@ -39,7 +39,9 @@ void Game::playLevel(){
             break;
         }
         else if(myplayer.getDelivery() == true){
-            std::cout << "Moving on to next level..." << std::endl;
+            myboard.print();
+            std::cout << "Press Enter to move on to the next level..." << std::endl;
+            std::cin.ignore();
             break;
         }
     }
@@ -49,7 +51,7 @@ void Game::playLevel(){
 }
 
 void Game::makeMove(){
-    string input;
+    string input; // letter input determines direction of movement
     
     std::cout << "Has pizza: ";
     if(myplayer.getPizza() == true){

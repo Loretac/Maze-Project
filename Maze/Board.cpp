@@ -36,8 +36,8 @@ Board::Board(){
     array[randH] = r3;
     array[randI] = free1;
     
-    
-    
+    // set the pointers to each array element
+    setPointers();
 
     // Set the position member variable for each space to its current value
     for(int i = 0; i < 9; i++){
@@ -50,6 +50,12 @@ Board::Board(){
     array[randI]->setOccupied();
     array[randI]->setActive(false);
     
+    
+    
+    currentSpace = array[randI];
+}
+
+void Board::setPointers(){
     // Set each of the space pointers
     array[0]->setTopNull();
     array[0]->setLeftNull();
@@ -95,8 +101,6 @@ Board::Board(){
     array[8]->setLeft(array[7]);
     array[8]->setRightNull();
     array[8]->setBottomNull();
-    
-    currentSpace = array[randI];
 }
 
 // Prints the board in its current state
