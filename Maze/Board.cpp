@@ -12,19 +12,24 @@ using std::cout;
 using std::endl;
 
 Board::Board(){
-    Monster *monster1 = new Monster;
-    Monster *monster2 = new Monster;
-    Monster *monster3 = new Monster;
-    Pizza *pizza1 = new Pizza;
-    Delivery *deliv1 = new Delivery;
-    Random *r1 = new Random;
-    Random *r2 = new Random;
-    Random *r3 = new Random;
-    Free *free1 = new Free;
+    monster1 = new Monster;
+    monster2 = new Monster;
+    monster3 = new Monster;
+    pizza1 = new Pizza;
+    deliv1 = new Delivery;
+    r1 = new Random;
+    r2 = new Random;
+    r3 = new Random;
+    free1 = new Free;
 
     // Randomize the 9 Board member variables to 0-8
-    randomize();
+    // randomize();
     
+    resetBoard(-1);
+    
+    
+    /*
+     
     // Assign each space randomly
     array[randA] = monster1;
     array[randB] = monster2;
@@ -36,8 +41,12 @@ Board::Board(){
     array[randH] = r3;
     array[randI] = free1;
     
+    */
+    
     // set the pointers to each array element
-    setPointers();
+    // setPointers();
+    
+    /*
 
     // Set the position member variable for each space to its current value
     for(int i = 0; i < 9; i++){
@@ -53,6 +62,9 @@ Board::Board(){
     
     
     currentSpace = array[randI];
+    
+    
+    */
 }
 
 void Board::setPointers(){
@@ -255,6 +267,71 @@ void Board::randomize(){
     do{
         randI = rand() % 9;
     }while(randI == randA || randI == randB || randI == randC || randI == randD || randI == randE || randI == randF || randI == randG || randI == randH);
+}
+
+void Board::resetBoard(int endingPosition){
+    randomize();
+    
+    // Assign each space randomly
+    array[randA] = monster1;
+    array[randB] = monster2;
+    array[randC] = monster3;
+    array[randD] = pizza1;
+    array[randE] = deliv1;
+    array[randF] = r1;
+    array[randG] = r2;
+    array[randH] = r3;
+    array[randI] = free1;
+    
+    
+    // Set the position member variable for each space to its current value
+    for(int i = 0; i < 9; i++){
+        array[i]->setPosition(i);
+        array[i]->setUnoccupied();
+        array[i]->setActive(true);
+    }
+    
+    Space* newStartingSpace;
+    
+    if(endingPosition != -1){ // -1 is only the beginning of the game
+        
+        
+        // run through all the newly randomized spaces to determine which should be the free space
+        for(int i = 0; i < 9; i++){
+            if(array[i]->getPosition() == endingPosition){
+                newStartingSpace = array[i];
+                break;
+            }
+            
+        }
+        
+        // swap
+        array[randI] = newStartingSpace;
+        array[endingPosition] = free1;
+        
+        setPointers();
+        
+        array[endingPosition]->setOccupied();
+        array[endingPosition]->setActive(false);
+        
+        currentSpace = array[endingPosition];
+    }
+    else{
+        // set the pointers to each array element
+        setPointers();
+        
+        
+        
+        
+        // initialize the starting space to occupied and inactive
+        array[randI]->setOccupied();
+        array[randI]->setActive(false);
+        
+        
+        
+        currentSpace = array[randI];
+        
+    }
 }
 
 Board::~Board(){

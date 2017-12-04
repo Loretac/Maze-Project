@@ -42,6 +42,36 @@ void Game::playLevel(){
             myboard.print();
             std::cout << "Press Enter to move on to the next level..." << std::endl;
             std::cin.ignore();
+            
+            // set up the board for the next round. the only space that stays the same is the ending delivery space, which turns into the free space.
+            int endingSpace = myboard.getCurrent()->getPosition();
+            
+            
+            myboard.resetBoard(endingSpace);
+            
+            // myboard.randomize();
+            
+            // get position of ending space
+            
+            
+            // std::cout << endingSpace << std::endl;
+            
+            
+            // Assign each space randomly
+            
+            /*
+            array[randA] = monster1;
+            array[randB] = monster2;
+            array[randC] = monster3;
+            array[randD] = pizza1;
+            array[randE] = deliv1;
+            array[randF] = r1;
+            array[randG] = r2;
+            array[randH] = r3;
+            array[randI] = free1;
+             */
+            
+            
             break;
         }
     }

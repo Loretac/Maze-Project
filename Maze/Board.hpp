@@ -22,6 +22,15 @@ private:
     Space* array[9];
     int randA, randB, randC, randD, randE, randF, randG, randH, randI;
     Space *currentSpace;
+    Monster *monster1;
+    Monster *monster2;
+    Monster *monster3;
+    Pizza *pizza1;
+    Delivery *deliv1;
+    Random *r1;
+    Random *r2;
+    Random *r3;
+    Free *free1;
     
 public:
     Board();
@@ -31,6 +40,7 @@ public:
     Space* getCurrent();
     void setCurrent(Space*);
     void setPointers();
+    void resetBoard(int);
     
 };
 
