@@ -21,6 +21,7 @@ Player::Player(){
     whiskey = 0;
     pizza = false; // player does not start out with pizza
     delivery = false; // delivery signifies the completion of the level
+    garlicPizza = false;
 }
 
 int Player::getLevel(){
@@ -79,6 +80,14 @@ void Player::setDelivery(bool i){
     delivery = i;
 }
 
+void Player::setGarlicPizza(bool i){
+    garlicPizza = i;
+}
+
+bool Player::getGarlicPizza(){
+    return garlicPizza;
+}
+
 void Player::printInventory(){
 
     std::cout << std::endl;
@@ -94,6 +103,9 @@ void Player::printInventory(){
     if(getPizza() == false){
         isPizza = "-";
     }
+    else if(getGarlicPizza() == true){
+        isPizza = "YES(G)";
+    }
     else{
         isPizza = "YES";
     }
@@ -101,7 +113,7 @@ void Player::printInventory(){
     string whiskeyString = std::to_string(getWhiskey());
     string garlicString = std::to_string(getGarlic());
     
-    string items = " Items: ";
+    string items = "Press u to use items: ";
     if(whiskey > 0){
         items += "Whiskey";
         items += "(";
@@ -150,9 +162,22 @@ void Player::printInventory(){
     
     
     
-    std::cout << line << '\n' << sep
-    << setw(levelWidth) << "Level" << sep << setw(pizzaWidth) << "Pizza?" << sep << setw(width)
-    << "Health      " << sep << setw(width) << "Spirit      " << sep << '\n' << line << '\n';
+    std::cout << line << '\n';
+    
+    
+    
+    
+    
+    std::cout << sep << setw(57) << std::left << " ----------------- PIZZA DELIVERY GAME ------------------" << std::right << sep << '\n';
+    std::cout << sep << setw(57) << std::left << "" << std::right << sep << '\n';
+    std::cout << sep << setw(57) << std::left << " Movement: e,s,d,f keys                  Press i for help" << std::right << sep << '\n';
+    
+    std::cout << line << '\n';
+    
+    
+    std::cout << sep << setw(levelWidth) << "Level" << sep << setw(pizzaWidth) << "Pizza?" << sep << setw(width)
+    << "Health      " << sep << setw(width) << "Spirit      " << sep << '\n';
+    // << line << '\n';
     
     std::cout << sep << setw(levelWidth) << level << sep << setw(pizzaWidth) << isPizza << sep << setw(width)
     << healthBar << sep << setw(width) << spiritBar << sep << '\n' ;

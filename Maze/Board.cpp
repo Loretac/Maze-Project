@@ -78,6 +78,7 @@ void Board::print(){
     
     // top row
     for(int h = 0; h < 8; h++){
+        std::cout << "| ";
         for(int i = 0; i < 3; i++){
             if(array[i]->getOccupied() == true){
                 std::cout << "XXXXXXXXXXXXXXXXXXXX" << " ";
@@ -102,6 +103,7 @@ void Board::print(){
     
     // middle row
     for(int h = 0; h < 8; h++){
+        std::cout << "| ";
         for(int i = 3; i < 6; i++){
             if(array[i]->getOccupied() == true){
                 std::cout << "XXXXXXXXXXXXXXXXXXXX" << " ";
@@ -120,11 +122,13 @@ void Board::print(){
             }
         }
         std::cout << std::endl;
+        
     }
     std::cout << std::endl;
 
     //bottom row
     for(int h = 0; h < 8; h++){
+        std::cout << "| ";
         for(int i = 6; i < 9; i++){
             if(array[i]->getOccupied() == true){
                 std::cout << "XXXXXXXXXXXXXXXXXXXX" << " ";
@@ -146,144 +150,6 @@ void Board::print(){
     }
     
     std::cout << std::endl;
-    
-    /*
-    std::cout << std::endl;
-    for(int i = 3; i < 6; i++){
-        if(array[i]->getOccupied() == true){
-            std::cout << "O" << " ";
-        }
-        else if(array[i]->getActive() == false){
-            std::cout << " " << " ";
-        }
-        else{
-            std::cout << array[i]->getIdentity() << " ";
-     }
-    }
-     
-    std::cout << std::endl;
-    for(int i = 6; i < 9; i++){
-        if(array[i]->getOccupied() == true){
-            std::cout << "O" << " ";
-        }
-        else if(array[i]->getActive() == false){
-            std::cout << " " << " ";
-        }
-        else{
-            std::cout << array[i]->getIdentity() << " ";
-        }
-    }
-    std::cout << std::endl << std::endl;
-     
-     
-    
-    
-    // FOR TESTING PURPOSES #1
-    for(int i = 0; i < 3; i++){
-        if(array[i]->getOccupied() == true){
-            std::cout << "O" << " ";
-        }
-        else if(array[i]->getActive() == false){
-            std::cout << " " << " ";
-        }
-        else{
-            std::cout << array[i]->getIdentity() << " ";
-        }
-    }
-    std::cout << std::endl;
-    for(int i = 3; i < 6; i++){
-        if(array[i]->getOccupied() == true){
-            std::cout << "O" << " ";
-        }
-        else if(array[i]->getActive() == false){
-            std::cout << " " << " ";
-        }
-        else{
-            std::cout << array[i]->getIdentity() << " ";
-        }
-    }
-    std::cout << std::endl;
-    for(int i = 6; i < 9; i++){
-        if(array[i]->getOccupied() == true){
-            std::cout << "O" << " ";
-        }
-        else if(array[i]->getActive() == false){
-            std::cout << " " << " ";
-        }
-        else{
-            std::cout << array[i]->getIdentity() << " ";
-        }
-    }
-    std::cout << std::endl << std::endl;
-    
-    // END TESTING PURPOSES #1
-     
-    */
-    
-    
-    /*********************************************************************
-     FOR TESTING PURPOSES #2
-     ********************************************************************/
-    
-    /*
-    
-    std::cout << "Occupied:" << std::endl;
-    for(int i = 0; i < 3; i++){
-        
-        std::cout << array[i]->getOccupied() << " ";
-    }
-    std::cout << std::endl;
-    for(int i = 3; i < 6; i++){
-        std::cout << array[i]->getOccupied() << " ";
-    }
-    std::cout << std::endl;
-    for(int i = 6; i < 9; i++){
-        std::cout << array[i]->getOccupied() << " ";
-    }
-    std::cout << std::endl << std::endl;
-    
-    
-    
-    
-    std::cout << "Active:" << std::endl;
-    for(int i = 0; i < 3; i++){
-        
-        std::cout << array[i]->getActive() << " ";
-    }
-    std::cout << std::endl;
-    for(int i = 3; i < 6; i++){
-        std::cout << array[i]->getActive() << " ";
-    }
-    std::cout << std::endl;
-    for(int i = 6; i < 9; i++){
-        std::cout << array[i]->getActive() << " ";
-    }
-    std::cout << std::endl << std::endl;
-    
-    
-    
-    */
-    
-    /*
-    
-    for(int i = 0; i < 3; i++){
-        std::cout << array[i].getPosition() << " ";
-    }
-    std::cout << std::endl;
-    for(int i = 3; i < 6; i++){
-        std::cout << array[i].getPosition() << " ";
-    }
-    std::cout << std::endl;
-    for(int i = 6; i < 9; i++){
-        std::cout << array[i].getPosition() << " ";
-    }
-    std::cout << std::endl;
-    */
-    
-    
-   /* std::cout << std::endl << std::endl << randA << " " << randB << " " << randC << " " << randD << " " << randE << " " << randF << " " << randG << " " << randH << " " << randI << std::endl;
-    
-    */
 }
 
 

@@ -18,6 +18,7 @@ void Game::play(){
         myplayer.setLevel(myplayer.getLevel() + 1);
         myplayer.setDelivery(false); // player does not start out with delivery
         myplayer.setPizza(false); // player does not start out with pizza
+        myplayer.setGarlicPizza(false);
         updateStatus();
         
         playLevel(); // loop levels until player dies
@@ -45,10 +46,26 @@ void Game::playLevel(){
             
             printAll();
             
-            // myplayer.printInventory();
-            // myboard.print();
-            // std::cout << "Press Enter to move on to the next level..." << std::endl;
-            std::cin.ignore();
+            std::string choice;
+            int k = 0;
+            
+            getline(std::cin, choice);
+            while(choice != "1" && choice != "2"){
+                if(k == 0){
+                    chatbox.addToQueue("Please try again.");
+                    k++;
+                }
+                
+                printAll();
+                getline(std::cin, choice);
+                
+            }
+
+            if(choice == "2"){
+                store();
+            }
+            
+            chatbox.addToQueue("Moving to next level...");
             
             // set up the board for the next round. the only space that stays the same is the ending delivery space, which turns into the free space.
             int endingSpace = myboard.getCurrent()->getPosition();
@@ -58,9 +75,6 @@ void Game::playLevel(){
             break;
         }
     }
-    
-    
-    
 }
 
 void Game::makeMove(){
@@ -70,7 +84,12 @@ void Game::makeMove(){
         getline(std::cin, input);
     
     int i = 0;
-    while(input != "e" && input != "s" && input != "d" && input != "f"){
+    while(input != "e" &&
+          input != "s" &&
+          input != "d" &&
+          input != "f" &&
+          input != "i" &&
+          input != "u"){
         if(i == 0){
             chatbox.addToQueue("Please try again.");
             i++;
@@ -92,6 +111,9 @@ void Game::makeMove(){
     }
     if(input == "f"){
         moveRight();
+    }
+    if(input == "u"){
+        useItems();
     }
     
     
@@ -235,9 +257,9 @@ int Game::preConditions(int value){
         
         if(input == "1"){
             
-            int damage = 40;
+            int damage = 20 + ((rand() % (myplayer.getLevel() + 20)) * 2);
             //fight
-            chatbox.addToQueue("You took damage!");
+            chatbox.addToQueue("You killed the monster and took damage!");
             
             if(myplayer.getHealth() - damage < 0){
                 myplayer.setHealth(0);
@@ -267,8 +289,23 @@ void Game::postConditions(int value){
         myplayer.setPizza(true);
     }
     if(value == 2){
-        chatbox.addToQueue("Mission accomplished. You delivered the pizza!");
-        chatbox.addToQueue("Press Enter to move on to the next level...");
+        chatbox.addToQueue("**** Level complete! ****");
+        
+        if(myplayer.getGarlicPizza() == true){
+            chatbox.addToQueue("The customer loved the garlic pizza!");
+            chatbox.addToQueue("You are awarded extra spirit points.");
+            if(myplayer.getSpirit() + 30 > 85){
+                myplayer.setSpirit(85);
+            }
+            else{
+                myplayer.setSpirit(myplayer.getSpirit() + 30);
+            }
+        }
+        else{
+            chatbox.addToQueue("You delivered the pizza!");
+        }
+        chatbox.addToQueue("1. Move on to next level");
+        chatbox.addToQueue("2. Shop at store");
         myplayer.setDelivery(true);
     }
     if(value == 3){
@@ -318,15 +355,24 @@ void Game::postConditions(int value){
             }
             if(input == "1"){
                 //find garlic or whiskey
-                int randomCrate = rand() % 2;
+                int randomCrate = rand() % 3;
                 
-                if(randomCrate == 0){
+                if(randomCrate == 0 && myplayer.getGarlic()  < 3){
                     chatbox.addToQueue("You search the crate and find some garlic.");
                     myplayer.setGarlic(myplayer.getGarlic() + 1);
                 }
-                if(randomCrate == 1){
+                else if(randomCrate == 0){
+                    chatbox.addToQueue("There is nothing in the crate.");
+                }
+                if(randomCrate == 1 && myplayer.getWhiskey() < 10){
                     chatbox.addToQueue("You search the crate and find some whiskey.");
                     myplayer.setWhiskey(myplayer.getWhiskey() + 1);
+                }
+                else if(randomCrate == 1){
+                    chatbox.addToQueue("There is nothing in the crate.");
+                }
+                if(randomCrate == 2){
+                    chatbox.addToQueue("There is nothing in the crate.");
                 }
             }
             if(input == "2"){
@@ -350,4 +396,172 @@ void Game::printAll(){
     chatbox.printQueue();
     
     std::cout << "Type something:" << std::endl;
+}
+
+void Game::store(){
+    
+    chatbox.addToQueue("Entering store...");
+    
+    while(1){
+        chatbox.addToQueue("1. Buy whiskey");
+        chatbox.addToQueue("2. Continue to next level");
+        
+        printAll();
+        
+        std::string choice;
+        int k = 0;
+        
+        getline(std::cin, choice);
+        while(choice != "1" && choice != "2"){
+            if(k == 0){
+                chatbox.addToQueue("Please try again.");
+                k++;
+            }
+            
+            printAll();
+            getline(std::cin, choice);
+            
+        }
+        if(choice == "1"){
+            if(myplayer.getWhiskey() > 9){
+                chatbox.addToQueue("You have enough whiskey.");
+            }
+            else if(myplayer.getSpirit() < 30){
+                chatbox.addToQueue("You don't have enough spirit points.");
+            }
+            else{
+                chatbox.addToQueue(" ");
+                chatbox.addToQueue("You bought 1 whiskey.");
+                myplayer.setSpirit(myplayer.getSpirit()  - 30);
+                myplayer.setWhiskey(myplayer.getWhiskey() + 1);
+            }
+            
+        }
+        if(choice == "2"){
+            break;
+        }
+    }
+    
+
+    
+
+    
+
+}
+
+void Game::useItems(){
+    if(myplayer.getWhiskey() == 0 && myplayer.getGarlic() == 0){
+        chatbox.addToQueue("You have no items to use.");
+    }
+    else if(myplayer.getWhiskey() > 0 && myplayer.getGarlic() == 0){
+        chatbox.addToQueue("1. Drink whiskey");
+        chatbox.addToQueue("2. Cancel");
+        
+        std::string i;
+        int k = 0;
+        
+        printAll();
+        
+        getline(std::cin, i);
+        while(i != "1" && i != "2"){
+            if(k == 0){
+                chatbox.addToQueue("Please try again.");
+                k++;
+            }
+            
+            printAll();
+            getline(std::cin, i);
+            
+        }
+        if(i == "1"){
+            drinkWhiskey();
+        }
+        if(i == "2"){
+            chatbox.addToQueue("Cancelling.");
+        }
+    }
+    else if(myplayer.getWhiskey() > 0 && myplayer.getGarlic() > 0){
+        chatbox.addToQueue("1. Drink whiskey");
+        chatbox.addToQueue("2. Use garlic on pizza");
+        chatbox.addToQueue("3. Cancel");
+        
+        std::string i;
+        int k = 0;
+        
+        printAll();
+        
+        getline(std::cin, i);
+        while(i != "1" && i != "2" && i != "3"){
+            if(k == 0){
+                chatbox.addToQueue("Please try again.");
+                k++;
+            }
+            
+            printAll();
+            getline(std::cin, i);
+            
+        }
+        if(i == "1"){
+            drinkWhiskey();
+        }
+        if(i == "2"){
+            useGarlic();
+        }
+        if(i == "3"){
+            chatbox.addToQueue("Cancelling.");
+        }
+    }
+    else if(myplayer.getWhiskey() == 0 && myplayer.getGarlic() > 0){
+        chatbox.addToQueue("1. Use garlic on pizza");
+        chatbox.addToQueue("2. Cancel");
+        
+        std::string i;
+        int k = 0;
+        
+        printAll();
+        
+        getline(std::cin, i);
+        while(i != "1" && i != "2"){
+            if(k == 0){
+                chatbox.addToQueue("Please try again.");
+                k++;
+            }
+            
+            printAll();
+            getline(std::cin, i);
+            
+        }
+        if(i == "1"){
+            useGarlic();
+        }
+        if(i == "2"){
+            chatbox.addToQueue("Cancelling.");
+        }
+    }
+}
+
+void Game::drinkWhiskey(){
+    myplayer.setWhiskey(myplayer.getWhiskey() - 1);
+    
+    if(myplayer.getHealth() + 20 > 85){
+        myplayer.setHealth(85);
+    }
+    else{
+        myplayer.setHealth(myplayer.getHealth() + 20);
+    }
+    chatbox.addToQueue("You drink whiskey to heal some health.");
+}
+
+void Game::useGarlic(){
+    if(myplayer.getPizza() == false){
+        chatbox.addToQueue("You should get the pizza first.");
+    }
+    else if(myplayer.getGarlicPizza() == true){
+        chatbox.addToQueue("The pizza already has garlic on it.");
+    }
+    else{
+        myplayer.setGarlicPizza(true);
+        myplayer.setGarlic(myplayer.getGarlic() - 1);
+        chatbox.addToQueue("You add the garlic to the pizza.");
+    }
 }

@@ -34,6 +34,10 @@ public:
     int preConditions(int);
     void postConditions(int);
     void printAll();
+    void store();
+    void useItems();
+    void drinkWhiskey();
+    void useGarlic();
     
     
 };

@@ -22,6 +22,7 @@ private:
     int whiskey;
     bool pizza;
     bool delivery;
+    bool garlicPizza;
     
 public:
     Player();
@@ -39,6 +40,8 @@ public:
     void setWhiskey(int);
     bool getDelivery();
     void setDelivery(bool);
+    void setGarlicPizza(bool);
+    bool getGarlicPizza();
     void printInventory();
     
 };
