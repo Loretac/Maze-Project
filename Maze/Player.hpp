@@ -18,6 +18,7 @@ private:
     int health;
     int spirit;
     int garlic;
+    int whiskey;
     bool pizza;
     bool delivery;
     
@@ -27,10 +28,15 @@ public:
     void setPizza(bool);
     int getHealth();
     void setHealth(int);
+    int getSpirit();
+    void setSpirit(int);
     int getGarlic();
     void setGarlic(int);
+    int getWhiskey();
+    void setWhiskey(int);
     bool getDelivery();
     void setDelivery(bool);
+    void printInventory();
     
 };
 

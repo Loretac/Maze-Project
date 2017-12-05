@@ -31,6 +31,8 @@ public:
     void moveRight();
     void updateStatus();
     void playLevel();
+    void postConditions(int);
+    
     
 };
 

@@ -17,6 +17,11 @@ bool Random::precondition(int){
 }
 
 int Random::postcondition(){
-    // placeholder
-    return 0;
+    if(getActive() == true){
+        return 3;
+    }
+    else{
+        return 0;
+    }
+    
 }

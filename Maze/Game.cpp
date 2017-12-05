@@ -39,6 +39,7 @@ void Game::playLevel(){
             break;
         }
         else if(myplayer.getDelivery() == true){
+            myplayer.printInventory();
             myboard.print();
             std::cout << "Press Enter to move on to the next level..." << std::endl;
             std::cin.ignore();
@@ -46,32 +47,7 @@ void Game::playLevel(){
             // set up the board for the next round. the only space that stays the same is the ending delivery space, which turns into the free space.
             int endingSpace = myboard.getCurrent()->getPosition();
             
-            
             myboard.resetBoard(endingSpace);
-            
-            // myboard.randomize();
-            
-            // get position of ending space
-            
-            
-            // std::cout << endingSpace << std::endl;
-            
-            
-            // Assign each space randomly
-            
-            /*
-            array[randA] = monster1;
-            array[randB] = monster2;
-            array[randC] = monster3;
-            array[randD] = pizza1;
-            array[randE] = deliv1;
-            array[randF] = r1;
-            array[randG] = r2;
-            array[randH] = r3;
-            array[randI] = free1;
-             */
-            
-            
             break;
         }
     }
@@ -83,13 +59,9 @@ void Game::playLevel(){
 void Game::makeMove(){
     string input; // letter input determines direction of movement
     
-    std::cout << "Has pizza: ";
-    if(myplayer.getPizza() == true){
-        std::cout << "yes";
-    }
-    else{
-        std::cout << "no";
-    }
+    myplayer.printInventory();
+    
+    
     std::cout << std::endl;
     
         myboard.print();
@@ -127,12 +99,10 @@ void Game::moveUp(){
         
         // run postcondition before setting new space to inactive
         int postValue = myboard.getCurrent()->getTop()->postcondition();
-        if(postValue == 1){
-            myplayer.setPizza(true);
-        }
-        if(postValue == 2){
-            myplayer.setDelivery(true);
-        }
+        
+        postConditions(postValue);
+        
+
         
         myboard.setCurrent(myboard.getCurrent()->getTop());
         
@@ -153,12 +123,10 @@ void Game::moveDown(){
         
         // run postcondition
         int postValue = myboard.getCurrent()->getBottom()->postcondition();
-        if(postValue == 1){
-            myplayer.setPizza(true);
-        }
-        if(postValue == 2){
-            myplayer.setDelivery(true);
-        }
+        
+        postConditions(postValue);
+        
+
         myboard.setCurrent(myboard.getCurrent()->getBottom());
         myboard.getCurrent()->setActive(false);
         
@@ -176,12 +144,10 @@ void Game::moveLeft(){
         
         // run postcondition
         int postValue = myboard.getCurrent()->getLeft()->postcondition();
-        if(postValue == 1){
-            myplayer.setPizza(true);
-        }
-        if(postValue == 2){
-            myplayer.setDelivery(true);
-        }
+        
+        postConditions(postValue);
+        
+
         myboard.setCurrent(myboard.getCurrent()->getLeft());
         myboard.getCurrent()->setActive(false);
         
@@ -202,12 +168,9 @@ void Game::moveRight(){
         
         // run postcondition
         int postValue = myboard.getCurrent()->getRight()->postcondition();
-        if(postValue == 1){
-            myplayer.setPizza(true);
-        }
-        if(postValue == 2){
-            myplayer.setDelivery(true);
-        }
+        
+        postConditions(postValue);
+        
         
         myboard.setCurrent(myboard.getCurrent()->getRight());
         myboard.getCurrent()->setActive(false);
@@ -229,5 +192,67 @@ void Game::updateStatus(){
     }
     if(myplayer.getPizza() == false && myplayer.getGarlic() == true){
         status = 3;
+    }
+}
+
+void Game::postConditions(int value){
+    if(value == 1){
+        myplayer.setPizza(true);
+    }
+    if(value == 2){
+        myplayer.setDelivery(true);
+    }
+    if(value == 3){
+        int randomEvent = rand() % 2;
+        if(randomEvent == 0){
+            // gain spirit points
+            int spiritGain = rand() % 10 + 1;
+            
+            // If this increase puts them over 100, cap at 100 max.
+            if(myplayer.getSpirit() == 100){
+                std::cout << "You take a rest. At least there are no monsters here!" << std::endl;
+            }
+            else if(myplayer.getSpirit() + spiritGain > 100){
+                std::cout << "You found " << 100 - myplayer.getSpirit() << " spirit points!" << std::endl;
+                myplayer.setSpirit(100);
+            }
+            else{
+                std::cout << "You found " << spiritGain << " spirit points!" << std::endl;
+                myplayer.setSpirit(myplayer.getSpirit() + spiritGain);
+            }
+
+        }
+        if(randomEvent == 1){
+            string input;
+            std::cout << "You found a crate." << std::endl;
+            std::cout << "1. Open crate" << std::endl;
+            std::cout << "2. Destroy crate" << std::endl;
+            
+            getline(std::cin, input);
+            
+            while(input != "1" && input != "2"){
+                std::cout << "Please try again." << std::endl;
+                getline(std::cin, input);
+            }
+            if(input == "1"){
+                //find garlic or whiskey
+                int randomCrate = rand() % 2;
+                
+                if(randomCrate == 0){
+                    std::cout << "You search the crate and find some garlic." << std::endl;
+                    myplayer.setGarlic(myplayer.getGarlic() + 1);
+                }
+                if(randomCrate == 1){
+                    std::cout << "You search the crate and find some whiskey." << std::endl;
+                    myplayer.setWhiskey(myplayer.getWhiskey() + 1);
+                }
+            }
+            if(input == "2"){
+                // destroy the crate, i.e. do nothing
+                std::cout << "You destroy the crate." << std::endl;
+            }
+            
+        }
+
     }
 }

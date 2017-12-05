@@ -22,49 +22,7 @@ Board::Board(){
     r3 = new Random;
     free1 = new Free;
 
-    // Randomize the 9 Board member variables to 0-8
-    // randomize();
-    
     resetBoard(-1);
-    
-    
-    /*
-     
-    // Assign each space randomly
-    array[randA] = monster1;
-    array[randB] = monster2;
-    array[randC] = monster3;
-    array[randD] = pizza1;
-    array[randE] = deliv1;
-    array[randF] = r1;
-    array[randG] = r2;
-    array[randH] = r3;
-    array[randI] = free1;
-    
-    */
-    
-    // set the pointers to each array element
-    // setPointers();
-    
-    /*
-
-    // Set the position member variable for each space to its current value
-    for(int i = 0; i < 9; i++){
-        array[i]->setPosition(i);
-        array[i]->setUnoccupied();
-        array[i]->setActive(true);
-    }
-    
-    // initialize the starting space to occupied and inactive
-    array[randI]->setOccupied();
-    array[randI]->setActive(false);
-    
-    
-    
-    currentSpace = array[randI];
-    
-    
-    */
 }
 
 void Board::setPointers(){
@@ -316,7 +274,7 @@ void Board::resetBoard(int endingPosition){
         
         currentSpace = array[endingPosition];
     }
-    else{
+    else{ // beginning of game
         // set the pointers to each array element
         setPointers();
         
