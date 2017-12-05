@@ -15,6 +15,7 @@
 class Player
 {
 private:
+    int level;
     int health;
     int spirit;
     int garlic;
@@ -24,6 +25,8 @@ private:
     
 public:
     Player();
+    int getLevel();
+    void setLevel(int);
     bool getPizza();
     void setPizza(bool);
     int getHealth();

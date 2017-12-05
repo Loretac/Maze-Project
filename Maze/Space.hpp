@@ -20,6 +20,7 @@ private:
     Space *left;
     Space *bottom;
     bool isOccupied;
+    bool isDiscovered;
     
     // Spaces which have been interacted with already (monsters killed) are switched to inactive
     bool isActive;
@@ -47,6 +48,8 @@ public:
     bool getActive();
     void setActive(bool);
     bool getOccupied();
+    bool getDiscovered();
+    void setDiscovered(bool);
     virtual int precondition(int) = 0; // Before user chooses to move to a specific space
     virtual int postcondition() = 0;
 };

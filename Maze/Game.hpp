@@ -18,7 +18,6 @@ private:
     Board myboard;
     Player myplayer;
     int status; // codes feed into space/s precondition function
-    int numLevel;
     Queue chatbox;
     
 public:

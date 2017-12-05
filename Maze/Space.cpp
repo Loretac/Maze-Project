@@ -91,3 +91,11 @@ void Space::setLeftNull(){
 void Space::setBottomNull(){
     bottom = nullptr;
 }
+
+bool Space::getDiscovered(){
+    return isDiscovered;
+}
+
+void Space::setDiscovered(bool i){
+    isDiscovered = i;
+}

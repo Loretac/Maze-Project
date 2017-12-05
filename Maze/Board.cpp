@@ -80,13 +80,16 @@ void Board::print(){
     for(int h = 0; h < 8; h++){
         for(int i = 0; i < 3; i++){
             if(array[i]->getOccupied() == true){
-                std::cout << "OOOOOOOOOOOOOOOOOOOO" << " ";
+                std::cout << "XXXXXXXXXXXXXXXXXXXX" << " ";
             }
             else if(array[i]->getIdentity() == 'D'){
-                std::cout << "dddddddddddddddddddd" << " ";
+                std::cout << "====================" << " ";
             }
             else if(array[i]->getActive() == false){
                 std::cout << "                    " << " ";
+            }
+            else if(array[i]->getDiscovered() == true){
+                std::cout << "!!!!!!!!!!!!!!!!!!!!" << " ";
             }
             else{
                 std::cout << "...................." << " ";
@@ -101,13 +104,16 @@ void Board::print(){
     for(int h = 0; h < 8; h++){
         for(int i = 3; i < 6; i++){
             if(array[i]->getOccupied() == true){
-                std::cout << "OOOOOOOOOOOOOOOOOOOO" << " ";
+                std::cout << "XXXXXXXXXXXXXXXXXXXX" << " ";
             }
             else if(array[i]->getIdentity() == 'D'){
-                std::cout << "dddddddddddddddddddd" << " ";
+                std::cout << "====================" << " ";
             }
             else if(array[i]->getActive() == false){
                 std::cout << "                    " << " ";
+            }
+            else if(array[i]->getDiscovered() == true){
+                std::cout << "!!!!!!!!!!!!!!!!!!!!" << " ";
             }
             else{
                 std::cout << "...................." << " ";
@@ -121,13 +127,16 @@ void Board::print(){
     for(int h = 0; h < 8; h++){
         for(int i = 6; i < 9; i++){
             if(array[i]->getOccupied() == true){
-                std::cout << "OOOOOOOOOOOOOOOOOOOO" << " ";
+                std::cout << "XXXXXXXXXXXXXXXXXXXX" << " ";
             }
             else if(array[i]->getIdentity() == 'D'){
-                std::cout << "dddddddddddddddddddd" << " ";
+                std::cout << "====================" << " ";
             }
             else if(array[i]->getActive() == false){
                 std::cout << "                    " << " ";
+            }
+            else if(array[i]->getDiscovered() == true){
+                std::cout << "!!!!!!!!!!!!!!!!!!!!" << " ";
             }
             else{
                 std::cout << "...................." << " ";
@@ -209,7 +218,7 @@ void Board::print(){
     
     // END TESTING PURPOSES #1
      
-     */
+    */
     
     
     /*********************************************************************
@@ -217,6 +226,7 @@ void Board::print(){
      ********************************************************************/
     
     /*
+    
     std::cout << "Occupied:" << std::endl;
     for(int i = 0; i < 3; i++){
         
@@ -250,9 +260,9 @@ void Board::print(){
     }
     std::cout << std::endl << std::endl;
     
+    
+    
     */
-    
-    
     
     /*
     
@@ -347,6 +357,7 @@ void Board::resetBoard(int endingPosition){
         array[i]->setPosition(i);
         array[i]->setUnoccupied();
         array[i]->setActive(true);
+        array[i]->setDiscovered(false);
     }
     
     Space* newStartingSpace;

@@ -13,7 +13,13 @@ Monster::Monster(){
 }
 
 int Monster::precondition(int){
-    return 3;
+    setDiscovered(true);
+    if(getActive() == true){
+        return 3;
+    }
+    else{
+        return 1;
+    }
 }
 
 int Monster::postcondition(){

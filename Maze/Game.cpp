@@ -13,10 +13,9 @@ using std::string;
 
 void Game::play(){
     status = 0; // initialize status to 0
-    numLevel = 0;
     
     while(1){
-        numLevel++;
+        myplayer.setLevel(myplayer.getLevel() + 1);
         myplayer.setDelivery(false); // player does not start out with delivery
         myplayer.setPizza(false); // player does not start out with pizza
         updateStatus();
@@ -53,6 +52,7 @@ void Game::playLevel(){
             
             // set up the board for the next round. the only space that stays the same is the ending delivery space, which turns into the free space.
             int endingSpace = myboard.getCurrent()->getPosition();
+            
             
             myboard.resetBoard(endingSpace);
             break;
@@ -216,8 +216,8 @@ int Game::preConditions(int value){
         string input;
         int i = 0;
         chatbox.addToQueue("You encounter a monster!");
-        chatbox.addToQueue("1. Fight the monster");
-        chatbox.addToQueue("2. Leave");
+        chatbox.addToQueue("1. Go fight the monster");
+        chatbox.addToQueue("2. Stay where you are");
         
         printAll();
         
@@ -234,13 +234,23 @@ int Game::preConditions(int value){
         }
         
         if(input == "1"){
+            
+            int damage = 40;
             //fight
             chatbox.addToQueue("You took damage!");
-            myplayer.setHealth(myplayer.getHealth() - 50);
+            
+            if(myplayer.getHealth() - damage < 0){
+                myplayer.setHealth(0);
+            }
+            else{
+                myplayer.setHealth(myplayer.getHealth() - damage);
+            }
+            
+            
             return 1;
         }
         if(input == "2"){
-            chatbox.addToQueue("You return to your previous space.");
+            chatbox.addToQueue("You stay in your current space.");
             return 0;
         }
         
@@ -268,12 +278,12 @@ void Game::postConditions(int value){
             int spiritGain = rand() % 10 + 1;
             
             // If this increase puts them over 100, cap at 100 max.
-            if(myplayer.getSpirit() == 100){
+            if(myplayer.getSpirit() == 85){
                 chatbox.addToQueue("You take a rest. At least there are no monsters here!");
             }
-            else if(myplayer.getSpirit() + spiritGain > 100){
+            else if(myplayer.getSpirit() + spiritGain > 85){
                 chatbox.addToQueue("You found spirit points!");
-                myplayer.setSpirit(100);
+                myplayer.setSpirit(85);
             }
             else{
                 chatbox.addToQueue("You found spirit points!");
@@ -332,7 +342,9 @@ void Game::postConditions(int value){
 void Game::printAll(){
     
     std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
-    std::cout << "Level " << numLevel << std::endl;
+    std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
+    std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
+    std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
     myplayer.printInventory();
     myboard.print();
     chatbox.printQueue();
