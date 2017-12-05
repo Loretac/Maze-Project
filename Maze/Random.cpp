@@ -12,8 +12,8 @@ Random::Random(){
     setIdentity('R');
 }
 
-bool Random::precondition(int){
-    return true;
+int Random::precondition(int){
+    return 1;
 }
 
 int Random::postcondition(){

@@ -12,8 +12,8 @@ Free::Free(){
     setIdentity('F');
 }
 
-bool Free::precondition(int){
-    return true;
+int Free::precondition(int){
+    return 1;
 }
 
 int Free::postcondition(){

@@ -12,18 +12,16 @@ Delivery::Delivery(){
     setIdentity('D');
 }
 
-bool Delivery::precondition(int status){
+int Delivery::precondition(int status){
     if(status == 0 || status == 3){
-        std::cout << "You probably shouldn't go to the house without having the pizza first." << std::endl;
-        return false;
+        return 2;
     }
     else{
-        return true;
+        return 1;
     }
 
 }
 
 int Delivery::postcondition(){
-    std::cout << "You delivered the pizza!" << std::endl;
     return 2;
 }

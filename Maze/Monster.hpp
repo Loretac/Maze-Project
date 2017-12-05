@@ -18,7 +18,7 @@ private:
     
 public:
     Monster();
-    virtual bool precondition(int);
+    virtual int precondition(int);
     virtual int postcondition();
 };
 

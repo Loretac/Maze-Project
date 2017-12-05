@@ -12,13 +12,15 @@ Pizza::Pizza(){
     setIdentity('P');
 }
 
-bool Pizza::precondition(int){
-    return true;
+int Pizza::precondition(int){
+    return 1;
 }
 
 int Pizza::postcondition(){
     if(getActive() == true){
-        std::cout << "You found the pizza!" << std::endl;
+        return 1;
     }
-    return 1;
+    else{
+        return 0;
+    }
 }

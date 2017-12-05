@@ -12,8 +12,8 @@ Monster::Monster(){
     setIdentity('M');
 }
 
-bool Monster::precondition(int){
-    return true;
+int Monster::precondition(int){
+    return 3;
 }
 
 int Monster::postcondition(){

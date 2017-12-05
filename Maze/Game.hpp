@@ -10,7 +10,7 @@
 #define Game_hpp
 
 #include <iostream>
-#include "Player.hpp"
+#include "TextQueue.hpp"
 
 class Game
 {
@@ -19,6 +19,7 @@ private:
     Player myplayer;
     int status; // codes feed into space/s precondition function
     int numLevel;
+    Queue chatbox;
     
 public:
     // Game();
@@ -31,7 +32,9 @@ public:
     void moveRight();
     void updateStatus();
     void playLevel();
+    int preConditions(int);
     void postConditions(int);
+    void printAll();
     
     
 };

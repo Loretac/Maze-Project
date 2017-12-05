@@ -18,7 +18,7 @@ private:
     
 public:
     Delivery();
-    virtual bool precondition(int);
+    virtual int precondition(int);
     virtual int postcondition();
 };
 
