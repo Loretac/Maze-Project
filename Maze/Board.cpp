@@ -6,10 +6,12 @@
  
  *********************************************************************/
 
+#include <iostream>
 #include "Board.hpp"
 
 using std::cout;
 using std::endl;
+using std::string;
 
 Board::Board(){
     monster1 = new Monster;
@@ -76,80 +78,86 @@ void Board::setPointers(){
 // Prints the board in its current state
 void Board::print(){
     
+    const string gap = "|" + string(58, ' ') + "|";
+    const string line = "|" + string(58, '-') + "|";
+    
     // top row
-    for(int h = 0; h < 8; h++){
+    for(int h = 0; h < 7; h++){
         std::cout << "| ";
         for(int i = 0; i < 3; i++){
             if(array[i]->getOccupied() == true){
-                std::cout << "XXXXXXXXXXXXXXXXXXXX" << " ";
+                std::cout << "XXXXXXXXXXXXXXXXXX" << " ";
             }
             else if(array[i]->getIdentity() == 'D'){
-                std::cout << "====================" << " ";
+                std::cout << "==================" << " ";
             }
             else if(array[i]->getActive() == false){
-                std::cout << "                    " << " ";
+                std::cout << "                  " << " ";
             }
             else if(array[i]->getDiscovered() == true){
-                std::cout << "!!!!!!!!!!!!!!!!!!!!" << " ";
+                std::cout << "!!!!!!!!!!!!!!!!!!" << " ";
             }
             else{
-                std::cout << "...................." << " ";
+                std::cout << ".................." << " ";
             }
         }
+        std::cout << "|";
         std::cout << std::endl;
     }
     
-    std::cout << std::endl;
+    std::cout << gap << std::endl;
     
     // middle row
-    for(int h = 0; h < 8; h++){
+    for(int h = 0; h < 7; h++){
         std::cout << "| ";
         for(int i = 3; i < 6; i++){
             if(array[i]->getOccupied() == true){
-                std::cout << "XXXXXXXXXXXXXXXXXXXX" << " ";
+                std::cout << "XXXXXXXXXXXXXXXXXX" << " ";
             }
             else if(array[i]->getIdentity() == 'D'){
-                std::cout << "====================" << " ";
+                std::cout << "==================" << " ";
             }
             else if(array[i]->getActive() == false){
-                std::cout << "                    " << " ";
+                std::cout << "                  " << " ";
             }
             else if(array[i]->getDiscovered() == true){
-                std::cout << "!!!!!!!!!!!!!!!!!!!!" << " ";
+                std::cout << "!!!!!!!!!!!!!!!!!!" << " ";
             }
             else{
-                std::cout << "...................." << " ";
+                std::cout << ".................." << " ";
             }
         }
+        std::cout << "|";
         std::cout << std::endl;
         
     }
-    std::cout << std::endl;
+    std::cout << gap << std::endl;
 
     //bottom row
-    for(int h = 0; h < 8; h++){
+    for(int h = 0; h < 7; h++){
         std::cout << "| ";
         for(int i = 6; i < 9; i++){
             if(array[i]->getOccupied() == true){
-                std::cout << "XXXXXXXXXXXXXXXXXXXX" << " ";
+                std::cout << "XXXXXXXXXXXXXXXXXX" << " ";
             }
             else if(array[i]->getIdentity() == 'D'){
-                std::cout << "====================" << " ";
+                std::cout << "==================" << " ";
             }
             else if(array[i]->getActive() == false){
-                std::cout << "                    " << " ";
+                std::cout << "                  " << " ";
             }
             else if(array[i]->getDiscovered() == true){
-                std::cout << "!!!!!!!!!!!!!!!!!!!!" << " ";
+                std::cout << "!!!!!!!!!!!!!!!!!!" << " ";
             }
             else{
-                std::cout << "...................." << " ";
+                std::cout << ".................." << " ";
             }
         }
+        std::cout << "|";
         std::cout << std::endl;
     }
     
-    std::cout << std::endl;
+    std::cout << line << std::endl;
 }
 
 

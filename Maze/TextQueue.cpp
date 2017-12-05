@@ -14,15 +14,24 @@
 using std::string;
 
 Queue::Queue(){
-    myQueue.push("");
-    myQueue.push("");
-    myQueue.push("");
-    myQueue.push("");
-    myQueue.push("");
+    string empty = '|' + string(58, ' ') + '|';
+    
+    myQueue.push(empty);
+    myQueue.push(empty);
+    myQueue.push(empty);
+    myQueue.push(empty);
+    myQueue.push(empty);
 }
 
 void Queue::addToQueue(string s){
-    myQueue.push(s);
+    string currentString = "| ";
+    currentString += s;
+    
+    currentString.resize(60, ' ');
+    
+    currentString[59] = '|';
+    
+    myQueue.push(currentString);
     myQueue.pop();
 }
 

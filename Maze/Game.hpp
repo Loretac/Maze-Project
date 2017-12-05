@@ -38,6 +38,7 @@ public:
     void useItems();
     void drinkWhiskey();
     void useGarlic();
+    void tutorial(int);
     
     
 };

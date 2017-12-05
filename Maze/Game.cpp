@@ -115,6 +115,9 @@ void Game::makeMove(){
     if(input == "u"){
         useItems();
     }
+    if(input == "i"){
+        tutorial(1);
+    }
     
     
 }
@@ -230,7 +233,7 @@ int Game::preConditions(int value){
         return 1;
     }
     if(value == 2){
-        chatbox.addToQueue("You probably shouldn't go to the house without having the pizza first.");
+        chatbox.addToQueue("You need the pizza first before going to the house.");
         return 2;
     }
     // monster
@@ -259,7 +262,7 @@ int Game::preConditions(int value){
             
             int damage = 20 + ((rand() % (myplayer.getLevel() + 20)) * 2);
             //fight
-            chatbox.addToQueue("You killed the monster and took damage!");
+            chatbox.addToQueue("You killed the monster! You took some damage.");
             
             if(myplayer.getHealth() - damage < 0){
                 myplayer.setHealth(0);
@@ -395,7 +398,7 @@ void Game::printAll(){
     myboard.print();
     chatbox.printQueue();
     
-    std::cout << "Type something:" << std::endl;
+    std::cout << "Type something: ";
 }
 
 void Game::store(){
@@ -564,4 +567,45 @@ void Game::useGarlic(){
         myplayer.setGarlic(myplayer.getGarlic() - 1);
         chatbox.addToQueue("You add the garlic to the pizza.");
     }
+}
+
+void Game::tutorial(int i){
+    std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
+    std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
+    std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
+    std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
+    
+    
+    myplayer.printInventory();
+    std::cout << "| XXXXXXXXXXXXXXXXXXXX                                     |" << std::endl;
+    std::cout << "| XXXXXXXXXXXXXXXXXXXX                                     |" << std::endl;
+    std::cout << "| XXXXXXXXXXXXXXXXXXXX <----        This is you.           |" << std::endl;
+    std::cout << "| XXXXXXXXXXXXXXXXXXXX                                     |" << std::endl;
+    std::cout << "| XXXXXXXXXXXXXXXXXXXX                                     |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "| ====================                                     |" << std::endl;
+    std::cout << "| ====================            Find the pizza.          |" << std::endl;
+    std::cout << "| ==================== <----    Deliver it to the home.    |" << std::endl;
+    std::cout << "| ====================                                     |" << std::endl;
+    std::cout << "| ====================                                     |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "| !!!!!!!!!!!!!!!!!!!!                                     |" << std::endl;
+    std::cout << "| !!!!!!!!!!!!!!!!!!!!                                     |" << std::endl;
+    std::cout << "| !!!!!!!!!!!!!!!!!!!! <- Avoid getting killed by monsters.|" << std::endl;
+    std::cout << "| !!!!!!!!!!!!!!!!!!!!                                     |" << std::endl;
+    std::cout << "| !!!!!!!!!!!!!!!!!!!!                                     |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|    At the end of each level, you can buy items with      |" << std::endl;
+    std::cout << "|    spirit points.                                        |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|    Don't let your health get to zero!                    |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cin.ignore();
 }

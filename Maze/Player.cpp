@@ -90,15 +90,6 @@ bool Player::getGarlicPizza(){
 
 void Player::printInventory(){
 
-    std::cout << std::endl;
-    
-    std::cout << "Health: " << getHealth() << std::endl;
-    std::cout << "Spirit: " << getSpirit() << std::endl;
-    
-    std::cout << "Whiskey: " << getWhiskey() << std::endl;
-    std::cout << "Garlic: " << getGarlic() << std::endl;
-    
-
     string isPizza;
     if(getPizza() == false){
         isPizza = "-";
@@ -113,7 +104,7 @@ void Player::printInventory(){
     string whiskeyString = std::to_string(getWhiskey());
     string garlicString = std::to_string(getGarlic());
     
-    string items = "Press u to use items: ";
+    string items = " Press u to use items: ";
     if(whiskey > 0){
         items += "Whiskey";
         items += "(";
@@ -136,9 +127,10 @@ void Player::printInventory(){
     const int pizzaWidth = 7;
     
     const int columns = 4;
-    const string sep = " |";
-    const int totalWidth = width * 2 + levelWidth + pizzaWidth + sep.size() * columns;
-    const string line = " |" + string(totalWidth-1, '-') + '|';
+    const string separator = " |";
+    const string border = "|";
+    const int totalWidth = width * 2 + levelWidth + pizzaWidth + separator.size() * columns;
+    const string line = border + string(totalWidth-1, '-') + '|';
     
     
     string healthBar;
@@ -168,24 +160,24 @@ void Player::printInventory(){
     
     
     
-    std::cout << sep << setw(57) << std::left << " ----------------- PIZZA DELIVERY GAME ------------------" << std::right << sep << '\n';
-    std::cout << sep << setw(57) << std::left << "" << std::right << sep << '\n';
-    std::cout << sep << setw(57) << std::left << " Movement: e,s,d,f keys                  Press i for help" << std::right << sep << '\n';
+    std::cout << border << setw(57) << std::left << " ----------------- PIZZA DELIVERY GAME ------------------" << std::right << separator << '\n';
+    std::cout << border << setw(57) << std::left << "" << std::right << separator << '\n';
+    std::cout << border << setw(57) << std::left << " Movement: e,s,d,f keys                  Press i for help" << std::right << separator << '\n';
     
     std::cout << line << '\n';
     
     
-    std::cout << sep << setw(levelWidth) << "Level" << sep << setw(pizzaWidth) << "Pizza?" << sep << setw(width)
-    << "Health      " << sep << setw(width) << "Spirit      " << sep << '\n';
+    std::cout << border << setw(levelWidth) << "Level" << separator << setw(pizzaWidth) << "Pizza?" << separator << setw(width)
+    << "Health      " << separator << setw(width) << "Spirit      " << separator << '\n';
     // << line << '\n';
     
-    std::cout << sep << setw(levelWidth) << level << sep << setw(pizzaWidth) << isPizza << sep << setw(width)
-    << healthBar << sep << setw(width) << spiritBar << sep << '\n' ;
+    std::cout << border << setw(levelWidth) << level << separator << setw(pizzaWidth) << isPizza << separator << setw(width)
+    << healthBar << separator << setw(width) << spiritBar << separator << '\n' ;
     
     std::cout << line << '\n';
     
     
-    std::cout << sep << setw(57) << std::left << items << std::right << sep << '\n';
+    std::cout << border << setw(57) << std::left << items << std::right << separator << '\n';
     
-    std::cout << line << '\n' << '\n';
+    std::cout << line << '\n';
 }
