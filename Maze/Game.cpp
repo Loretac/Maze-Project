@@ -238,54 +238,108 @@ int Game::preConditions(int value){
     }
     // monster
     if(value == 3){
-        string input;
+        int monsterType = rand() % 2;
         int i = 0;
-        chatbox.addToQueue("You encounter a monster!");
-        chatbox.addToQueue("1. Go fight the monster");
-        chatbox.addToQueue("2. Stay where you are");
-        
-        printAll();
-        
-        getline(std::cin, input);
-        
-        while(input != "1" && input != "2"){
-            if(i == 0){
-                chatbox.addToQueue("Please try again.");
-                i++;
-
-            }
+        string input;
+        if(monsterType == 0){
+            chatbox.addToQueue("You encounter a werewolf!");
+            chatbox.addToQueue("1. Go fight the werewolf");
+            chatbox.addToQueue("2. Stay where you are");
+        }
+        if(monsterType == 1 && myplayer.getGarlic() == 0){
+            chatbox.addToQueue("You encounter a vampire!");
+            chatbox.addToQueue("1. Go fight the vampire");
+            chatbox.addToQueue("2. Stay where you are");
+        }
+        if(monsterType == 0 || myplayer.getGarlic() == 0){
             printAll();
             getline(std::cin, input);
-        }
-        
-        if(input == "1"){
             
-            int damage = 20 + ((rand() % (myplayer.getLevel() + 20)) * 2);
-            //fight
-            chatbox.addToQueue("You killed the monster! You took some damage.");
-            
-            if(myplayer.getHealth() - damage < 0){
-                myplayer.setHealth(0);
-            }
-            else{
-                myplayer.setHealth(myplayer.getHealth() - damage);
+            while(input != "1" && input != "2"){
+                if(i == 0){
+                    chatbox.addToQueue("Please try again.");
+                    i++;
+                }
+                printAll();
+                getline(std::cin, input);
             }
             
+            if(input == "1"){
+                int damage = 20 + ((rand() % (myplayer.getLevel() + 20)) * 2);
+                //fight
+                chatbox.addToQueue("You killed the monster! You took some damage.");
+                
+                if(myplayer.getHealth() - damage < 0){
+                    myplayer.setHealth(0);
+                }
+                else{
+                    myplayer.setHealth(myplayer.getHealth() - damage);
+                }
+                return 1;
+            }
+            if(input == "2"){
+                chatbox.addToQueue("You stay in your current space.");
+                return 0;
+            }
+        }
+        if(monsterType == 1 && myplayer.getGarlic() > 0){
+            chatbox.addToQueue("You encounter a vampire!");
+            chatbox.addToQueue("1. Go fight the vampire");
+            chatbox.addToQueue("2. Stay where you are");
+            chatbox.addToQueue("3. Fight vampire using garlic");
             
-            return 1;
-        }
-        if(input == "2"){
-            chatbox.addToQueue("You stay in your current space.");
-            return 0;
-        }
-        
+            printAll();
+            getline(std::cin, input);
+            
+            while(input != "1" && input != "2" && input != "3"){
+                if(i == 0){
+                    chatbox.addToQueue("Please try again.");
+                    i++;
+                }
+                printAll();
+                getline(std::cin, input);
+            }
+            
+            if(input == "1"){
+                int damage = 20 + ((rand() % (myplayer.getLevel() + 20)) * 2);
+                //fight
+                chatbox.addToQueue("You killed the monster! You took some damage.");
+                
+                if(myplayer.getHealth() - damage < 0){
+                    myplayer.setHealth(0);
+                }
+                else{
+                    myplayer.setHealth(myplayer.getHealth() - damage);
+                }
+                return 1;
+            }
+            if(input == "2"){
+                chatbox.addToQueue("You stay in your current space.");
+                return 0;
+            }
+            if(input == "3"){
+                int damage = ((rand() % (myplayer.getLevel() + 20)));
+                //fight
+                chatbox.addToQueue("You use your garlic fighting the vampire and come away");
+                chatbox.addToQueue("mostly unscathed!");
+                myplayer.setGarlic(myplayer.getGarlic() - 1);
+                
+                if(myplayer.getHealth() - damage < 0){
+                    myplayer.setHealth(0);
+                }
+                else{
+                    myplayer.setHealth(myplayer.getHealth() - damage);
+                }
+            }
         return 1;
     }
     else{
-        return 0;
+        return 1;
     }
 }
-
+    
+    return 1;
+}
 void Game::postConditions(int value){
     if(value == 1){
         chatbox.addToQueue("You found the pizza!");
@@ -644,7 +698,7 @@ void Game::menu(int i){
     std::cout << "|       |        |                    |                    |" << std::endl;
     std::cout << "|----------------------------------------------------------|" << std::endl;
     std::cout << "|                                                          |" << std::endl;
-    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|    Note: Please resize screen to fit this window.        |" << std::endl;
     std::cout << "|                                                          |" << std::endl;
     std::cout << "|                                                          |" << std::endl;
     std::cout << "|    1. Play                                               |" << std::endl;
