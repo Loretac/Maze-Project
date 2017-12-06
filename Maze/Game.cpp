@@ -36,8 +36,8 @@ void Game::playLevel(){
         
         if(myplayer.getHealth() == 0){
             chatbox.addToQueue("You died!");
-            chatbox.addToQueue("Press 1 to play again.");
-            chatbox.addToQueue("Or press any button to quit.");
+            chatbox.addToQueue("Press 1 to return to the menu.");
+            chatbox.addToQueue("Or press 2 to quit.");
             printAll();
             
             break;
@@ -576,7 +576,29 @@ void Game::tutorial(int i){
     std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
     
     
-    myplayer.printInventory();
+    
+    
+    std::cout << "|----------------------------------------------------------|" << std::endl;
+    std::cout << "| ----------------- PIZZA DELIVERY GAME ------------------ |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                         TUTORIAL                         |" << std::endl;
+    std::cout << "|----------------------------------------------------------|" << std::endl;
+    std::cout << "| Level | Pizza? |       Health       |       Spirit       |" << std::endl;
+    std::cout << "|       |        |                    |                    |" << std::endl;
+    std::cout << "|----------------------------------------------------------|" << std::endl;
+    if(i == 0){
+        std::cout << "|            Press Enter to return to menu.                |" << std::endl;
+    }
+    if(i == 1){
+        std::cout << "|            Press Enter to return to game.                |" << std::endl;
+    }
+    std::cout << "|----------------------------------------------------------|" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                         e     Move up                    |" << std::endl;
+    std::cout << "|                         d     Move down                  |" << std::endl;
+    std::cout << "|           Controls:     s     Move left                  |" << std::endl;
+    std::cout << "|                         f     Move right                 |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
     std::cout << "| XXXXXXXXXXXXXXXXXXXX                                     |" << std::endl;
     std::cout << "| XXXXXXXXXXXXXXXXXXXX                                     |" << std::endl;
     std::cout << "| XXXXXXXXXXXXXXXXXXXX <----        This is you.           |" << std::endl;
@@ -601,11 +623,62 @@ void Game::tutorial(int i){
     std::cout << "|    Don't let your health get to zero!                    |" << std::endl;
     std::cout << "|                                                          |" << std::endl;
     std::cout << "|                                                          |" << std::endl;
-    std::cout << "|                                                          |" << std::endl;
-    std::cout << "|                                                          |" << std::endl;
-    std::cout << "|                                                          |" << std::endl;
-    std::cout << "|                                                          |" << std::endl;
-    std::cout << "|                                                          |" << std::endl;
-    std::cout << "|                                                          |" << std::endl;
     std::cin.ignore();
+}
+
+void Game::menu(int i){
+    std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
+    std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
+    std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
+    std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
+    
+    
+    
+    
+    std::cout << "|----------------------------------------------------------|" << std::endl;
+    std::cout << "| ----------------- PIZZA DELIVERY GAME ------------------ |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|----------------------------------------------------------|" << std::endl;
+    std::cout << "| Level | Pizza? |       Health       |       Spirit       |" << std::endl;
+    std::cout << "|       |        |                    |                    |" << std::endl;
+    std::cout << "|----------------------------------------------------------|" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|    1. Play                                               |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|    2. How to play                                        |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|    3. Quit                                               |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    std::cout << "|                                                          |" << std::endl;
+    if(i == 0){
+        std::cout << "|                                                          |" << std::endl;
+    }
+    if(i == 1){
+        std::cout << "|             Please choose a valid option.                |" << std::endl;
+    }
+    
+    std::cout << "|                                                          |" << std::endl;
+
 }

@@ -39,6 +39,7 @@ public:
     void drinkWhiskey();
     void useGarlic();
     void tutorial(int);
+    void menu(int);
     
     
 };
