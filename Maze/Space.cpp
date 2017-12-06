@@ -1,10 +1,12 @@
-//
-//  Space.cpp
-//  Maze
-//
-//  Created by Chris Loreta on 11/29/17.
-//  Copyright © 2017 Chris Loreta. All rights reserved.
-//
+/*********************************************************************
+ ** Author: Chris Loreta
+ ** Date: 05 Dec 2017
+ ** Description:
+ 
+ The Space class is a virtual class. The Monster, Pizza, Delivery,
+ Random, and Free classes inherit from Space. This file contains the
+ function definitions (primarily getters and setters).
+ *********************************************************************/
 
 #include "Space.hpp"
 

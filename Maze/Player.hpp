@@ -1,10 +1,11 @@
-//
-//  Player.hpp
-//  Maze
-//
-//  Created by Chris Loreta on 12/1/17.
-//  Copyright © 2017 Chris Loreta. All rights reserved.
-//
+/*********************************************************************
+ ** Author: Chris Loreta
+ ** Date: 05 Dec 2017
+ ** Description:
+ 
+ This file contains the member variables and function definitions for
+ class Player.
+ *********************************************************************/
 
 #ifndef Player_hpp
 #define Player_hpp

@@ -1,10 +1,11 @@
-//
-//  TextQueue.hpp
-//  Maze
-//
-//  Created by Chris Loreta on 12/4/17.
-//  Copyright © 2017 Chris Loreta. All rights reserved.
-//
+/*********************************************************************
+ ** Author: Chris Loreta
+ ** Date: 05 Dec 2017
+ ** Description:
+ 
+ This file contains the member variables and function prototypes
+ for the class Queue.
+ *********************************************************************/
 
 #ifndef TextQueue_hpp
 #define TextQueue_hpp

@@ -1,23 +1,31 @@
-//
-//  Game.cpp
-//  Maze
-//
-//  Created by Chris Loreta on 11/22/17.
-//  Copyright © 2017 Chris Loreta. All rights reserved.
-//
+/*********************************************************************
+ ** Author: Chris Loreta
+ ** Date: 05 Dec 2017
+ ** Description:
+ 
+ The Game class contains all the primary operations of the game. This
+ file contains the function definitions.
+ *********************************************************************/
 
 #include <iostream>
 #include "Game.hpp"
 
 using std::string;
 
+/*********************************************************************
+ The entire game runs through the play function.
+ *********************************************************************/
 void Game::play(){
     status = 0; // initialize status to 0
     
     while(1){
         myplayer.setLevel(myplayer.getLevel() + 1);
-        myplayer.setDelivery(false); // player does not start out with delivery
-        myplayer.setPizza(false); // player does not start out with pizza
+        
+        // player does not start out with delivery
+        myplayer.setDelivery(false);
+        
+        // player does not start out with pizza
+        myplayer.setPizza(false);
         myplayer.setGarlicPizza(false);
         updateStatus();
         
@@ -28,10 +36,12 @@ void Game::play(){
     }
 }
 
+/*********************************************************************
+ This function loops moves until the player dies or completes the
+ level.
+ *********************************************************************/
 void Game::playLevel(){
-    // loop moves until player dies or level is complete
     while(1){
-        
         makeMove();
         
         if(myplayer.getHealth() == 0){
@@ -47,6 +57,8 @@ void Game::playLevel(){
             printAll();
             
             std::string choice;
+            
+            // Counter so message only shows once
             int k = 0;
             
             getline(std::cin, choice);
@@ -60,16 +72,16 @@ void Game::playLevel(){
                 getline(std::cin, choice);
                 
             }
-
             if(choice == "2"){
                 store();
             }
             
             chatbox.addToQueue("Moving to next level...");
             
-            // set up the board for the next round. the only space that stays the same is the ending delivery space, which turns into the free space.
+            // set up the board for the next round. the only space
+            // that stays the same is the ending delivery space,
+            // which turns into the free space.
             int endingSpace = myboard.getCurrent()->getPosition();
-            
             
             myboard.resetBoard(endingSpace);
             break;
@@ -77,7 +89,11 @@ void Game::playLevel(){
     }
 }
 
+/*********************************************************************
+ This function runs every move the player makes.
+ *********************************************************************/
 void Game::makeMove(){
+    
     string input; // letter input determines direction of movement
     
     printAll();
@@ -94,10 +110,9 @@ void Game::makeMove(){
             chatbox.addToQueue("Please try again.");
             i++;
         }
-        
+        // Try again for valid input
         
         printAll();
-        
         getline(std::cin, input);
     }
     if(input == "e"){
@@ -122,12 +137,23 @@ void Game::makeMove(){
     
 }
 
+/*********************************************************************
+ This function runs if the player enters 'e', and moves the player
+ up if they are able to.
+ *********************************************************************/
 void Game::moveUp(){
-    if(myboard.getCurrent()->getTop() == nullptr || myboard.getCurrent()->getTop() == NULL){
+    // Cannot move up further
+    if(myboard.getCurrent()->getTop() == nullptr ||
+       myboard.getCurrent()->getTop() == NULL){
         chatbox.addToQueue("You cannot move up.");
     }
+    // preconditions will only return 1 if player allowed to proceed
     else if(preConditions(myboard.getCurrent()->getTop()->precondition(status)) == 1){
+        
+        // space above now occupied
         myboard.getCurrent()->getTop()->setOccupied();
+        
+        // current space now unoccupied
         myboard.getCurrent()->setUnoccupied();
         
         // run postcondition before setting new space to inactive
@@ -135,84 +161,139 @@ void Game::moveUp(){
         
         postConditions(postValue);
         
-
-        
+        // update current space
         myboard.setCurrent(myboard.getCurrent()->getTop());
         
+        // set new current space to inactive
         myboard.getCurrent()->setActive(false);
         
+        // update the player's inventory status
         updateStatus();
     }
 
 }
 
+/*********************************************************************
+ This function runs if the player enters 'd', and moves the player
+ down if they are able to.
+ *********************************************************************/
 void Game::moveDown(){
-    if(myboard.getCurrent()->getBottom() == nullptr || myboard.getCurrent()->getBottom() == NULL){
+    // Cannot move down further
+    if(myboard.getCurrent()->getBottom() == nullptr ||
+       myboard.getCurrent()->getBottom() == NULL){
         chatbox.addToQueue("You cannot move down.");
     }
+    // preconditions will only return 1 if player allowed to proceed
     else if(preConditions(myboard.getCurrent()->getBottom()->precondition(status))  == 1){
+        
+        // space below now occupied
         myboard.getCurrent()->getBottom()->setOccupied();
+        
+        // current space now unoccupied
         myboard.getCurrent()->setUnoccupied();
         
-        // run postcondition
+        // run postcondition before setting new space to inactive
         int postValue = myboard.getCurrent()->getBottom()->postcondition();
         
         postConditions(postValue);
         
-
+        // update current space
         myboard.setCurrent(myboard.getCurrent()->getBottom());
+        
+        // set new current space to inactive
         myboard.getCurrent()->setActive(false);
         
+        // update the player's inventory status
         updateStatus();
     }
 }
 
+/*********************************************************************
+ This function runs if the player enters 'd', and moves the player
+ down if they are able to.
+ *********************************************************************/
 void Game::moveLeft(){
-    if(myboard.getCurrent()->getLeft() == nullptr || myboard.getCurrent()->getLeft() == NULL){
+    // Cannot move left any further
+    if(myboard.getCurrent()->getLeft() == nullptr ||
+       myboard.getCurrent()->getLeft() == NULL){
         chatbox.addToQueue("You cannot move left.");
     }
+    // preconditions will only return 1 if player allowed to proceed
     else if(preConditions(myboard.getCurrent()->getLeft()->precondition(status))  == 1){
+        
+        // space to the left now occupied
         myboard.getCurrent()->getLeft()->setOccupied();
+        
+        // current space now unoccupied
         myboard.getCurrent()->setUnoccupied();
         
-        // run postcondition
+        // run postcondition before setting new space to inactice
         int postValue = myboard.getCurrent()->getLeft()->postcondition();
         
         postConditions(postValue);
         
-
+        // update current space
         myboard.setCurrent(myboard.getCurrent()->getLeft());
+        
+        // set old space to inactive
         myboard.getCurrent()->setActive(false);
         
+        // update the player's inventory status
         updateStatus();
     }
 }
 
+/*********************************************************************
+ This function runs if the player enters 'd', and moves the player
+ down if they are able to.
+ *********************************************************************/
 void Game::moveRight(){
-    
-    
-    
-    if(myboard.getCurrent()->getRight() == nullptr || myboard.getCurrent()->getRight() == NULL){
+    // Cannot move right any further
+    if(myboard.getCurrent()->getRight() == nullptr ||
+       myboard.getCurrent()->getRight() == NULL){
         chatbox.addToQueue("You cannot move right.");
     }
+    // preconditions will only return 1 if player allowed to proceed
     else if(preConditions(myboard.getCurrent()->getRight()->precondition(status))  == 1){
+        
+        // space to the right now occupied
         myboard.getCurrent()->getRight()->setOccupied();
+        
+        // current space now unoccupied
         myboard.getCurrent()->setUnoccupied();
         
-        // run postcondition
+        // run postcondition before setting new space to inactive
         int postValue = myboard.getCurrent()->getRight()->postcondition();
         
         postConditions(postValue);
         
-        
+        // update current space
         myboard.setCurrent(myboard.getCurrent()->getRight());
+        
+        // set new current space to inactive
         myboard.getCurrent()->setActive(false);
         
+        // update the player's inventory status
         updateStatus();
         
     }
 }
 
+/*********************************************************************
+ This function updates the player's "status". The statuses are as
+ follows:
+ 0 - No pizza and no garlic
+ 1 - Pizza and no garlic
+ 2 - Pizza and garlic
+ 3 - No pizza and garlic
+ 
+ These codes are fed into Spaces' precondition functions, which is
+ then passed again to the preCondition function below to determine
+ if the player is allowed to proceed into the space. For example, a
+ 0 or 3 status means the player does not have the pizza, so the
+ Delivery precondition function would deny the player access to the
+ space.
+ *********************************************************************/
 void Game::updateStatus(){
     if(myplayer.getPizza() == false && myplayer.getGarlic() == 0){
         status = 0;
@@ -228,16 +309,25 @@ void Game::updateStatus(){
     }
 }
 
+/*********************************************************************
+ The preconditions function takes as a parameter the value returned
+ from a space's precondition function. The reason this function
+ processes the actual consequences of the preconditions as opposed to
+ the Spaces' precondition functions themselves is because those
+ functions don't have access to the Player's member variables.
+ Returning a 1 means the player is allowed to proceed.
+ *********************************************************************/
 int Game::preConditions(int value){
     if(value == 1){
-        return 1;
+        return 1; // allowed to proceed
     }
     if(value == 2){
         chatbox.addToQueue("You need the pizza first before going to the house.");
-        return 2;
+        return 2; // rejected
     }
-    // monster
+    // Monster space
     if(value == 3){
+        // 50/50 chance werewolf or vampire
         int monsterType = rand() % 2;
         int i = 0;
         string input;
@@ -256,7 +346,7 @@ int Game::preConditions(int value){
             getline(std::cin, input);
             
             while(input != "1" && input != "2"){
-                if(i == 0){
+                if(i == 0){ // message appears max 1 time
                     chatbox.addToQueue("Please try again.");
                     i++;
                 }
@@ -265,23 +355,28 @@ int Game::preConditions(int value){
             }
             
             if(input == "1"){
-                int damage = 20 + ((rand() % (myplayer.getLevel() + 20)) * 2);
-                //fight
+                // Standard damage function that increases with level
+                int damage = 20 + ((rand() % (myplayer.getLevel()
+                                              + 20)) * 2);
+                // fight the monster
                 chatbox.addToQueue("You killed the monster! You took some damage.");
                 
+                // health can't be negative
                 if(myplayer.getHealth() - damage < 0){
                     myplayer.setHealth(0);
                 }
                 else{
                     myplayer.setHealth(myplayer.getHealth() - damage);
                 }
-                return 1;
+                return 1; // monster killed, so allowed to proceed
             }
             if(input == "2"){
                 chatbox.addToQueue("You stay in your current space.");
-                return 0;
+                return 0; // not allowed to proceed
             }
         }
+        // if the monster is a vampire and the player has garlic,
+        // the player is given an extra option
         if(monsterType == 1 && myplayer.getGarlic() > 0){
             chatbox.addToQueue("You encounter a vampire!");
             chatbox.addToQueue("1. Go fight the vampire");
@@ -292,7 +387,7 @@ int Game::preConditions(int value){
             getline(std::cin, input);
             
             while(input != "1" && input != "2" && input != "3"){
-                if(i == 0){
+                if(i == 0){ // message appears max 1 time
                     chatbox.addToQueue("Please try again.");
                     i++;
                 }
@@ -311,15 +406,17 @@ int Game::preConditions(int value){
                 else{
                     myplayer.setHealth(myplayer.getHealth() - damage);
                 }
-                return 1;
+                return 1; //  vampire killed; allowed to proceed
             }
             if(input == "2"){
                 chatbox.addToQueue("You stay in your current space.");
-                return 0;
+                return 0; // not allowed to proceed
             }
             if(input == "3"){
+                // damage function significantly lesser
                 int damage = ((rand() % (myplayer.getLevel() + 20)));
-                //fight
+                
+                // fight the vampire
                 chatbox.addToQueue("You use your garlic fighting the vampire and come away");
                 chatbox.addToQueue("mostly unscathed!");
                 myplayer.setGarlic(myplayer.getGarlic() - 1);
@@ -331,26 +428,38 @@ int Game::preConditions(int value){
                     myplayer.setHealth(myplayer.getHealth() - damage);
                 }
             }
-        return 1;
+        return 1; // prevent errors from if statements
     }
     else{
-        return 1;
+        return 1; // prevent errors from if statements
     }
 }
     
-    return 1;
+    return 1; // prevent errors from if statements
 }
+
+/*********************************************************************
+ The preconditions function takes as a parameter the value returned
+ from a space's precondition function. The existence of this function
+ is similar to preConditions function above. However, this function
+ returns no values. The integer parameter is passed from the space's
+ postcondition functions.
+ *********************************************************************/
 void Game::postConditions(int value){
-    if(value == 1){
+    if(value == 1){ // When the pizza is found
+        
         chatbox.addToQueue("You found the pizza!");
         myplayer.setPizza(true);
     }
-    if(value == 2){
+    if(value == 2){ // When the pizza is delivered
         chatbox.addToQueue("**** Level complete! ****");
         
+        // If the player added garlic to the pizza
         if(myplayer.getGarlicPizza() == true){
             chatbox.addToQueue("The customer loved the garlic pizza!");
             chatbox.addToQueue("You are awarded extra spirit points.");
+            
+            // spirit cannot be over 85
             if(myplayer.getSpirit() + 30 > 85){
                 myplayer.setSpirit(85);
             }
@@ -365,16 +474,17 @@ void Game::postConditions(int value){
         chatbox.addToQueue("2. Shop at store");
         myplayer.setDelivery(true);
     }
-    if(value == 3){
+    if(value == 3){ // When player lands on random event space
+        // 50/50 chance spirit point gain or crate
         int randomEvent = rand() % 2;
         if(randomEvent == 0){
             // gain spirit points
             int spiritGain = rand() % 10 + 1;
             
-            // If this increase puts them over 100, cap at 100 max.
             if(myplayer.getSpirit() == 85){
                 chatbox.addToQueue("You take a rest. At least there are no monsters here!");
             }
+            // If this increase puts them over 85, cap at 85 max.
             else if(myplayer.getSpirit() + spiritGain > 85){
                 chatbox.addToQueue("You found spirit points!");
                 myplayer.setSpirit(85);
@@ -390,8 +500,6 @@ void Game::postConditions(int value){
             chatbox.addToQueue("You found a crate.");
             chatbox.addToQueue("1. Open crate");
             chatbox.addToQueue("2. Destroy crate");
-            
-            
             
             printAll();
 
@@ -411,7 +519,7 @@ void Game::postConditions(int value){
                 i++;
             }
             if(input == "1"){
-                //find garlic or whiskey
+                // find garlic, whiskey, or nothing
                 int randomCrate = rand() % 3;
                 
                 if(randomCrate == 0 && myplayer.getGarlic()  < 3){
@@ -442,12 +550,22 @@ void Game::postConditions(int value){
     }
 }
 
+/*********************************************************************
+ The printAll function combines multiple print functions into one
+ and not only prints every move but often multiple times per move.
+ The interface refreshes every time the user inputs anything, even
+ if it is incorrect input. Thus, the printAll function is very
+ frequently used.
+ *********************************************************************/
 void Game::printAll(){
     
-    std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
-    std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
-    std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
-    std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
+    // These extra spaces are to push the old content out of the
+    // console window.
+    std::cout << std::endl << std::endl << std::endl << std::endl
+    << std::endl << std::endl << std::endl << std::endl << std::endl
+    << std::endl << std::endl << std::endl << std::endl << std::endl
+    << std::endl << std::endl << std::endl << std::endl << std::endl
+    << std::endl << std::endl << std::endl << std::endl << std::endl;
     myplayer.printInventory();
     myboard.print();
     chatbox.printQueue();
@@ -455,11 +573,15 @@ void Game::printAll(){
     std::cout << "Type something: ";
 }
 
+/*********************************************************************
+ The store function can only be run at the end of a level. It allows
+ the player to purchase whiskey (more items can be added).
+ *********************************************************************/
 void Game::store(){
     
     chatbox.addToQueue("Entering store...");
     
-    while(1){
+    while(1){ // loops until player chooses to leave
         chatbox.addToQueue("1. Buy whiskey");
         chatbox.addToQueue("2. Continue to next level");
         
@@ -470,7 +592,7 @@ void Game::store(){
         
         getline(std::cin, choice);
         while(choice != "1" && choice != "2"){
-            if(k == 0){
+            if(k == 0){ // message appears max 1 time
                 chatbox.addToQueue("Please try again.");
                 k++;
             }
@@ -480,10 +602,10 @@ void Game::store(){
             
         }
         if(choice == "1"){
-            if(myplayer.getWhiskey() > 9){
+            if(myplayer.getWhiskey() > 9){ // max 10 whiskey
                 chatbox.addToQueue("You have enough whiskey.");
             }
-            else if(myplayer.getSpirit() < 30){
+            else if(myplayer.getSpirit() < 30){ // costs 30 spirit pts
                 chatbox.addToQueue("You don't have enough spirit points.");
             }
             else{
@@ -492,20 +614,18 @@ void Game::store(){
                 myplayer.setSpirit(myplayer.getSpirit()  - 30);
                 myplayer.setWhiskey(myplayer.getWhiskey() + 1);
             }
-            
         }
         if(choice == "2"){
             break;
         }
     }
-    
-
-    
-
-    
-
 }
 
+/*********************************************************************
+ This function is called whenever the user enters 'u', and is more of
+ a menu function to determine which item will be used. The functions
+ involving the actual drinking of whiskey and use of garlic are later.
+ *********************************************************************/
 void Game::useItems(){
     if(myplayer.getWhiskey() == 0 && myplayer.getGarlic() == 0){
         chatbox.addToQueue("You have no items to use.");
@@ -521,7 +641,7 @@ void Game::useItems(){
         
         getline(std::cin, i);
         while(i != "1" && i != "2"){
-            if(k == 0){
+            if(k == 0){ // message shows max 1 time
                 chatbox.addToQueue("Please try again.");
                 k++;
             }
@@ -597,9 +717,15 @@ void Game::useItems(){
     }
 }
 
+/*********************************************************************
+ This function runs when the player elects to drink a whiskey in
+ the item usage menu.
+ *********************************************************************/
 void Game::drinkWhiskey(){
+    // decrease whiskey count by 1
     myplayer.setWhiskey(myplayer.getWhiskey() - 1);
     
+    // health cannot be over 85. whiskey adds 20
     if(myplayer.getHealth() + 20 > 85){
         myplayer.setHealth(85);
     }
@@ -609,6 +735,10 @@ void Game::drinkWhiskey(){
     chatbox.addToQueue("You drink whiskey to heal some health.");
 }
 
+/*********************************************************************
+ This function runs when the player elects to use garlic in
+ the item usage menu. They must already have the pizza.
+ *********************************************************************/
 void Game::useGarlic(){
     if(myplayer.getPizza() == false){
         chatbox.addToQueue("You should get the pizza first.");
@@ -617,20 +747,25 @@ void Game::useGarlic(){
         chatbox.addToQueue("The pizza already has garlic on it.");
     }
     else{
+        // the GarlicPizza variable determines if the pizza has garlic.
         myplayer.setGarlicPizza(true);
+        
+        // decrease player's garlic count by 1
         myplayer.setGarlic(myplayer.getGarlic() - 1);
         chatbox.addToQueue("You add the garlic to the pizza.");
     }
 }
 
+/*********************************************************************
+ This function prints out a tutorial screen and can be accessed by
+ pressing 'i' during a level or via the main menu.
+ *********************************************************************/
 void Game::tutorial(int i){
-    std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
-    std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
-    std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
-    std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
-    
-    
-    
+    std::cout << std::endl << std::endl << std::endl << std::endl
+    << std::endl << std::endl << std::endl << std::endl << std::endl
+    << std::endl << std::endl << std::endl << std::endl << std::endl
+    << std::endl << std::endl << std::endl << std::endl << std::endl
+    << std::endl << std::endl << std::endl << std::endl << std::endl;
     
     std::cout << "|----------------------------------------------------------|" << std::endl;
     std::cout << "| ----------------- PIZZA DELIVERY GAME ------------------ |" << std::endl;
@@ -680,14 +815,16 @@ void Game::tutorial(int i){
     std::cin.ignore();
 }
 
+/*********************************************************************
+ This menu function appears at the beginning of the game and after
+ the end of a game if a player wishes to return to it.
+ *********************************************************************/
 void Game::menu(int i){
-    std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
-    std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
-    std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
-    std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl;
-    
-    
-    
+    std::cout << std::endl << std::endl << std::endl << std::endl
+    << std::endl << std::endl << std::endl << std::endl << std::endl
+    << std::endl << std::endl << std::endl << std::endl << std::endl
+    << std::endl << std::endl << std::endl << std::endl << std::endl
+    << std::endl << std::endl << std::endl << std::endl << std::endl;
     
     std::cout << "|----------------------------------------------------------|" << std::endl;
     std::cout << "| ----------------- PIZZA DELIVERY GAME ------------------ |" << std::endl;

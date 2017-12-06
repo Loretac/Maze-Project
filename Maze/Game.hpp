@@ -1,10 +1,11 @@
-//
-//  Game.hpp
-//  Maze
-//
-//  Created by Chris Loreta on 11/22/17.
-//  Copyright © 2017 Chris Loreta. All rights reserved.
-//
+/*********************************************************************
+ ** Author: Chris Loreta
+ ** Date: 05 Dec 2017
+ ** Description:
+ 
+ This function contains all the member variables and function
+ prototypes of the class Game.
+ *********************************************************************/
 
 #ifndef Game_hpp
 #define Game_hpp

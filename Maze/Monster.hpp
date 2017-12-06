@@ -1,10 +1,10 @@
-//
-//  Monster.hpp
-//  Maze
-//
-//  Created by Chris Loreta on 11/29/17.
-//  Copyright © 2017 Chris Loreta. All rights reserved.
-//
+/*********************************************************************
+ ** Author: Chris Loreta
+ ** Date: 05 Dec 2017
+ ** Description:
+ 
+ This file contains the function prototypes for class Monster.
+ *********************************************************************/
 
 #ifndef Monster_hpp
 #define Monster_hpp
@@ -17,7 +17,7 @@ class Monster : public Space // Inherits from Space class
 private:
     
 public:
-    Monster();
+    Monster(); // Default constructor
     virtual int precondition(int);
     virtual int postcondition();
 };

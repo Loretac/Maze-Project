@@ -1,10 +1,13 @@
-//
-//  Player.cpp
-//  Maze
-//
-//  Created by Chris Loreta on 12/1/17.
-//  Copyright © 2017 Chris Loreta. All rights reserved.
-//
+/*********************************************************************
+ ** Author: Chris Loreta
+ ** Date: 05 Dec 2017
+ ** Description:
+ 
+ The Player class contains all items that relate to the player and
+ their related functions. Things like health, spirit level, items in
+ inventory, and current level are all part of the class. This file
+ contains the function definitions.
+ *********************************************************************/
 
 #include <iostream>
 #include <iomanip>
@@ -13,6 +16,9 @@
 using std::string;
 using std::setw;
 
+/*********************************************************************
+ Default constructor
+ *********************************************************************/
 Player::Player(){
     level = 0;
     health = 85;
@@ -88,6 +94,10 @@ bool Player::getGarlicPizza(){
     return garlicPizza;
 }
 
+/*********************************************************************
+ This function prints the player's inventory at the top of the
+ interface, shown during the entire game.
+ *********************************************************************/
 void Player::printInventory(){
 
     string isPizza;
@@ -95,15 +105,17 @@ void Player::printInventory(){
         isPizza = "-";
     }
     else if(getGarlicPizza() == true){
-        isPizza = "YES(G)";
+        isPizza = "YES(G)"; // Garlic pizza
     }
     else{
         isPizza = "YES";
     }
     
+    // For converting ints to strings
     string whiskeyString = std::to_string(getWhiskey());
     string garlicString = std::to_string(getGarlic());
     
+    // Displays all items in inventory
     string items = " Press u to use items: ";
     if(whiskey > 0){
         items += "Whiskey";
@@ -122,6 +134,7 @@ void Player::printInventory(){
         
     }
 
+    // Custom column widths for table
     const int width = 19;
     const int levelWidth = 6;
     const int pizzaWidth = 7;
@@ -129,9 +142,9 @@ void Player::printInventory(){
     const int columns = 4;
     const string separator = " |";
     const string border = "|";
-    const int totalWidth = width * 2 + levelWidth + pizzaWidth + separator.size() * columns;
+    const int totalWidth = width * 2 + levelWidth + pizzaWidth +
+        separator.size() * columns;
     const string line = border + string(totalWidth-1, '-') + '|';
-    
     
     string healthBar;
     string spiritBar;
@@ -150,34 +163,38 @@ void Player::printInventory(){
         spiritBar = string((spirit) / 5 + 1, '=');
     }
     
+    std::cout << line << '\n';
     
+    std::cout << border << setw(57) << std::left
+    << " ----------------- PIZZA DELIVERY GAME ------------------"
+    << std::right << separator << '\n';
     
+    std::cout << border << setw(57) << std::left << ""
+    << std::right << separator << '\n';
     
+    std::cout << border << setw(57) << std::left
+    << " Movement: e,s,d,f keys                  Press i for help"
+    << std::right << separator << '\n';
     
     std::cout << line << '\n';
     
     
+    std::cout << border << setw(levelWidth) << "Level" << separator
+    << setw(pizzaWidth) << "Pizza?" << separator << setw(width)
+    << "Health      " << separator << setw(width) << "Spirit      "
+    << separator << '\n';
+
     
-    
-    
-    std::cout << border << setw(57) << std::left << " ----------------- PIZZA DELIVERY GAME ------------------" << std::right << separator << '\n';
-    std::cout << border << setw(57) << std::left << "" << std::right << separator << '\n';
-    std::cout << border << setw(57) << std::left << " Movement: e,s,d,f keys                  Press i for help" << std::right << separator << '\n';
-    
-    std::cout << line << '\n';
-    
-    
-    std::cout << border << setw(levelWidth) << "Level" << separator << setw(pizzaWidth) << "Pizza?" << separator << setw(width)
-    << "Health      " << separator << setw(width) << "Spirit      " << separator << '\n';
-    // << line << '\n';
-    
-    std::cout << border << setw(levelWidth) << level << separator << setw(pizzaWidth) << isPizza << separator << setw(width)
-    << healthBar << separator << setw(width) << spiritBar << separator << '\n' ;
+    std::cout << border << setw(levelWidth) << level << separator
+    << setw(pizzaWidth) << isPizza << separator << setw(width)
+    << healthBar << separator << setw(width) << spiritBar
+    << separator << '\n' ;
     
     std::cout << line << '\n';
     
     
-    std::cout << border << setw(57) << std::left << items << std::right << separator << '\n';
+    std::cout << border << setw(57) << std::left << items << std::right
+    << separator << '\n';
     
     std::cout << line << '\n';
 }

@@ -1,10 +1,10 @@
-//
-//  Random.hpp
-//  Maze
-//
-//  Created by Chris Loreta on 11/29/17.
-//  Copyright © 2017 Chris Loreta. All rights reserved.
-//
+/*********************************************************************
+ ** Author: Chris Loreta
+ ** Date: 05 Dec 2017
+ ** Description:
+ 
+ This file contains the function prototypes for class Random.
+ *********************************************************************/
 
 #ifndef Random_hpp
 #define Random_hpp

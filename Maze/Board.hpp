@@ -21,7 +21,7 @@ private:
     // char array[NUM_ROWS][NUM_COLS];
     Space* array[9];
     int randA, randB, randC, randD, randE, randF, randG, randH, randI;
-    Space *currentSpace;
+    Space *currentSpace; // keeps track of space occupied
     Monster *monster1;
     Monster *monster2;
     Monster *monster3;
@@ -33,8 +33,8 @@ private:
     Free *free1;
     
 public:
-    Board();
-    ~Board();
+    Board(); // Constructor
+    ~Board(); // Destructor
     void print();
     void randomize();
     Space* getCurrent();

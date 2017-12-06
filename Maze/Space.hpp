@@ -1,10 +1,11 @@
-//
-//  Space.hpp
-//  Maze
-//
-//  Created by Chris Loreta on 11/29/17.
-//  Copyright © 2017 Chris Loreta. All rights reserved.
-//
+/*********************************************************************
+ ** Author: Chris Loreta
+ ** Date: 05 Dec 2017
+ ** Description:
+ 
+This file contains the member variables and function prototypes for
+ the Space class.
+ *********************************************************************/
 
 #ifndef Space_hpp
 #define Space_hpp
@@ -13,16 +14,19 @@
 
 class Space{
 private:
-    int position; // Where this space is
+    int position; // Position of space in 3x3 array (numbered 0-8)
     char identity; // sample variable for testing
     Space *top;
     Space *right;
     Space *left;
     Space *bottom;
     bool isOccupied;
+    
+    // Monster spaces that have been revealed but not attacked
     bool isDiscovered;
     
-    // Spaces which have been interacted with already (monsters killed) are switched to inactive
+    // Spaces which have been interacted with already (monsters killed)
+    // are switched to inactive
     bool isActive;
     
 public:
@@ -51,7 +55,7 @@ public:
     bool getDiscovered();
     void setDiscovered(bool);
     virtual int precondition(int) = 0; // Before user chooses to move to a specific space
-    virtual int postcondition() = 0;
+    virtual int postcondition() = 0; // After user completes move to space
 };
 
 #endif /* Space_hpp */

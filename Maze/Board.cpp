@@ -3,7 +3,9 @@
  ** Date: 22 Nov 2017
  ** Description:
  
- 
+ The Board class is what is visually represented by the rectangular
+ tic-tac-toe-like "array" in the main interface. It contains all 9
+ spaces.
  *********************************************************************/
 
 #include <iostream>
@@ -13,6 +15,9 @@ using std::cout;
 using std::endl;
 using std::string;
 
+/*********************************************************************
+ Default constructor, creates all the spaces and resets the board.
+ *********************************************************************/
 Board::Board(){
     monster1 = new Monster;
     monster2 = new Monster;
@@ -27,6 +32,10 @@ Board::Board(){
     resetBoard(-1);
 }
 
+/*********************************************************************
+ This function sets all the pointers for each item in the 3x3
+ arrangement. It assumes that the array is already set up.
+ *********************************************************************/
 void Board::setPointers(){
     // Set each of the space pointers
     array[0]->setTopNull();
@@ -75,13 +84,15 @@ void Board::setPointers(){
     array[8]->setBottomNull();
 }
 
-// Prints the board in its current state
+/*********************************************************************
+ This function prints the board in its current state.
+ *********************************************************************/
 void Board::print(){
     
     const string gap = "|" + string(58, ' ') + "|";
     const string line = "|" + string(58, '-') + "|";
     
-    // top row
+    // Top row
     for(int h = 0; h < 7; h++){
         std::cout << "| ";
         for(int i = 0; i < 3; i++){
@@ -107,7 +118,7 @@ void Board::print(){
     
     std::cout << gap << std::endl;
     
-    // middle row
+    // Middle row
     for(int h = 0; h < 7; h++){
         std::cout << "| ";
         for(int i = 3; i < 6; i++){
@@ -129,11 +140,10 @@ void Board::print(){
         }
         std::cout << "|";
         std::cout << std::endl;
-        
     }
     std::cout << gap << std::endl;
 
-    //bottom row
+    // Bottom row
     for(int h = 0; h < 7; h++){
         std::cout << "| ";
         for(int i = 6; i < 9; i++){
@@ -160,7 +170,9 @@ void Board::print(){
     std::cout << line << std::endl;
 }
 
-
+/*********************************************************************
+ Getter function returns current space
+ *********************************************************************/
 Space* Board::getCurrent(){
     return currentSpace;
 }
@@ -171,7 +183,8 @@ void Board::setCurrent(Space* current){
 
 
 /*********************************************************************
-This function assigns the numbers 0-8 randomly to each "randX" member variable.
+ This function assigns the numbers 0-8 randomly to each "randX"
+ member variable.
  ********************************************************************/
 void Board::randomize(){
     srand (time(NULL)); // seeds for random integers
@@ -192,29 +205,46 @@ void Board::randomize(){
     
     do{
         randE = rand() % 9;
-    }while(randE == randA || randE == randB || randE == randC || randE == randD);
+    }while(randE == randA || randE == randB || randE == randC ||
+           randE == randD);
     
     do{
         randF = rand() % 9;
-    }while(randF == randA || randF == randB || randF == randC || randF == randD || randF == randE);
+    }while(randF == randA || randF == randB || randF == randC ||
+           randF == randD || randF == randE);
     
     do{
         randG = rand() % 9;
-    }while(randG == randA || randG == randB || randG == randC || randG == randD || randG == randE || randG == randF);
+    }while(randG == randA || randG == randB || randG == randC ||
+           randG == randD || randG == randE || randG == randF);
     
     do{
         randH = rand() % 9;
-    }while(randH == randA || randH == randB || randH == randC || randH == randD || randH == randE || randH == randF || randH == randG);
+    }while(randH == randA || randH == randB || randH == randC ||
+           randH == randD || randH == randE || randH == randF ||
+           randH == randG);
     
     do{
         randI = rand() % 9;
-    }while(randI == randA || randI == randB || randI == randC || randI == randD || randI == randE || randI == randF || randI == randG || randI == randH);
+    }while(randI == randA || randI == randB || randI == randC ||
+           randI == randD || randI == randE || randI == randF ||
+           randI == randG || randI == randH);
 }
 
+/*********************************************************************
+ The resetBoard function randomizes all of the spaces and resets all
+ values to their default at the beginning of each round. The
+ endingPosisition signifies the value (0-8) of the 3x3 array. This
+ is saved and assigned to the Free space, so it takes the place
+ of where the Delivery space was in the last round. A -1 ending
+ position is provided only at the beginning of the game during
+ initialization.
+ ********************************************************************/
 void Board::resetBoard(int endingPosition){
+    // Randomize the member variables
     randomize();
     
-    // Assign each space randomly
+    // Assign each space randomly with these variables
     array[randA] = monster1;
     array[randB] = monster2;
     array[randC] = monster3;
@@ -225,58 +255,59 @@ void Board::resetBoard(int endingPosition){
     array[randH] = r3;
     array[randI] = free1;
     
-    
-    // Set the position member variable for each space to its current value
+    // Set the position member variable for each space to its current
+    // value
     for(int i = 0; i < 9; i++){
         array[i]->setPosition(i);
         array[i]->setUnoccupied();
         array[i]->setActive(true);
         array[i]->setDiscovered(false);
     }
-    
     Space* newStartingSpace;
     
     if(endingPosition != -1){ // -1 is only the beginning of the game
         
         
-        // run through all the newly randomized spaces to determine which should be the free space
+        // run through all the newly randomized spaces to determine
+        // which should be the free space
         for(int i = 0; i < 9; i++){
             if(array[i]->getPosition() == endingPosition){
                 newStartingSpace = array[i];
                 break;
             }
-            
         }
         
-        // swap
+        // Here we swap the space that occupies Delivery's past spot
+        // with Free space.
         array[randI] = newStartingSpace;
         array[endingPosition] = free1;
         
+        // Set the pointers
         setPointers();
         
+        // Initialize Free space's variables
         array[endingPosition]->setOccupied();
         array[endingPosition]->setActive(false);
         
+        // Set current space as Free space
         currentSpace = array[endingPosition];
     }
     else{ // beginning of game
         // set the pointers to each array element
         setPointers();
         
-        
-        
-        
         // initialize the starting space to occupied and inactive
         array[randI]->setOccupied();
         array[randI]->setActive(false);
         
-        
-        
+        // Set current space to Free space
         currentSpace = array[randI];
-        
     }
 }
 
+/*********************************************************************
+ Destructor function
+ *********************************************************************/
 Board::~Board(){
     for(int i = 0; i < 9; i++){
         delete array[i];
